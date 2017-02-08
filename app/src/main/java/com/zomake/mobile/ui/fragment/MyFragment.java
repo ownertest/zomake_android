@@ -48,11 +48,11 @@ public class MyFragment extends BaseFragment {
     private void initFunctionGrid() {
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(), 3);
         recyclerView.setLayoutManager(gridLayoutManager);
-        adapter = new CommonRecycleViewAdapter<String>(getContext(), R.layout.catalog_item_layout) {
+        adapter = new CommonRecycleViewAdapter<String>(getContext(), R.layout.user_center_item_layout) {
             @Override
             public void convert(ViewHolderHelper helper, String text) {
                 helper.setText(R.id.name, text);
-                helper.setBackgroundRes(R.id.image, iconIds[helper.getPosition() - 2]);
+                helper.setBackgroundRes(R.id.image, iconIds[helper.getAdapterPosition() - 2]);
             }
         };
         adapter.addAll(Arrays.asList(iconTexts));

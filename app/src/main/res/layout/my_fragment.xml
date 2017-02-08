@@ -4,12 +4,70 @@
               android:layout_height="match_parent"
               android:orientation="vertical"
               android:background="#f4f4f4">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="#4a4a4a"
+    >
+        <RelativeLayout android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp">
+            <ImageView
+                android:layout_height="20dp"
+                android:layout_width="20dp"
+                android:background="@drawable/user_center_message"
+                android:layout_alignParentLeft="true"
+                android:scaleType="center"
+                android:layout_centerHorizontal="true"
+                android:layout_marginLeft="16dp"
+            />
+            <ImageView
+                android:layout_height="20dp"
+                android:layout_width="20dp"
+                android:background="@drawable/user_center_message"
+                android:layout_alignParentRight="true"
+                android:scaleType="center"
+                android:layout_centerHorizontal="true"
+                android:layout_marginRight="16dp"
+            />
+        </RelativeLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/tv_user_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableTop="@drawable/usercenter_avatar"
+                android:drawablePadding="5dp"
+                android:gravity="center"
+                android:layout_gravity="center_horizontal"
+                android:text="Zacku"
+                android:textColor="@color/white"
+                android:textSize="13sp" />
+
+            <TextView
+                android:id="@+id/tv_user_phone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:gravity="center"
+                android:layout_gravity="center_horizontal"
+                android:text="铂金会员 Z9"
+                android:textColor="@color/white"
+                android:textSize="13sp"
+                android:layout_marginBottom="16dp"/>
+        </LinearLayout>
+    </LinearLayout>
 
     <LinearLayout
         android:id="@+id/order"
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_marginTop="@dimen/margin_10">
         <TextView
             android:background="@color/white"
             android:id="@+id/tv_order"
@@ -51,7 +109,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:background="@color/white"
         app:loadMoreEnabled="true"
         app:refreshEnabled="true" />
 
