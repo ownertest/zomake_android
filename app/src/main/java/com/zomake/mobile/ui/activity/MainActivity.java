@@ -100,7 +100,7 @@ public class MainActivity extends BaseActivity {
         tabLayout.setOnTabSelectListener(new OnTabSelectListener() {
             @Override
             public void onTabSelect(int position) {
-                SwitchTo(position);
+                switchTo(position);
             }
 
             @Override
@@ -130,14 +130,14 @@ public class MainActivity extends BaseActivity {
             transaction.add(R.id.fl_body, myFragment, "myFragment");
         }
         transaction.commit();
-        SwitchTo(currentTabPosition);
+        switchTo(currentTabPosition);
         tabLayout.setCurrentTab(currentTabPosition);
     }
 
     /**
      * 切换
      */
-    private void SwitchTo(int position) {
+    private void switchTo(int position) {
         LogUtils.logd("主页菜单position" + position);
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         switch (position) {
