@@ -8,34 +8,39 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:background="#4a4a4a"
-    >
-        <RelativeLayout android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="20dp">
-            <ImageView
-                android:layout_height="20dp"
-                android:layout_width="20dp"
-                android:background="@drawable/user_center_message"
-                android:layout_alignParentLeft="true"
-                android:scaleType="center"
-                android:layout_centerHorizontal="true"
-                android:layout_marginLeft="16dp"
-            />
-            <ImageView
-                android:layout_height="20dp"
-                android:layout_width="20dp"
-                android:background="@drawable/user_center_message"
-                android:layout_alignParentRight="true"
-                android:scaleType="center"
-                android:layout_centerHorizontal="true"
-                android:layout_marginRight="16dp"
-            />
-        </RelativeLayout>
+        android:background="#4a4a4a">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/user_info_default_banner"
             android:orientation="vertical">
+            <RelativeLayout android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="20dp">
+
+
+                <com.zomake.mobile.widget.FontTextView
+                    android:id="@+id/user_center_set"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="\ue6a5"
+                    android:textColor="@color/white"
+                    android:layout_marginLeft="16dp"
+                    android:textSize="20dp" />
+
+                <com.zomake.mobile.widget.FontTextView
+                    android:id="@+id/user_center_msg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginRight="16dp"
+                    android:layout_alignParentRight="true"
+                    android:text="\ue6d1"
+                    android:textColor="@color/black"
+                    android:textSize="20dp" />
+
+            </RelativeLayout>
             <TextView
                 android:id="@+id/tv_user_name"
                 android:layout_width="wrap_content"
@@ -63,44 +68,74 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/order"
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
         android:orientation="horizontal"
         android:layout_marginTop="@dimen/margin_10">
-        <TextView
+        <LinearLayout
+            android:id="@+id/order"
             android:background="@color/white"
-            android:id="@+id/tv_order"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:drawablePadding="@dimen/text_view_icon_margin"
-            android:paddingTop="@dimen/text_view_icon_padding"
-            android:paddingBottom="@dimen/text_view_icon_padding"
-            android:drawableTop="@drawable/tab_bar_my_selected"
-            android:gravity="center_horizontal"
-            android:text="订单"
+            android:orientation="vertical"
             android:clickable="true"
-            android:textColor="@color/black"
-            android:textSize="13sp"/>
-        />
-        <TextView
+            android:gravity="center_horizontal">
+
+            <com.zomake.mobile.widget.FontTextView
+                android:id="@+id/icon_order"
+                android:layout_marginTop="@dimen/margin_10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="\ue79b"
+                android:textColor="@color/black"
+                android:textSize="20dp"
+                android:layout_gravity="center_horizontal"
+                />
+            <TextView
+                android:id="@+id/tv_order"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="订单"
+                android:layout_marginTop="10dp"
+                android:layout_gravity="center_horizontal"
+                android:textColor="@color/black"
+                android:textSize="12dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/car"
             android:background="@color/white"
-            android:id="@+id/tv_car"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:drawablePadding="@dimen/text_view_icon_margin"
-            android:paddingTop="@dimen/text_view_icon_padding"
-            android:paddingBottom="@dimen/text_view_icon_padding"
             android:layout_marginLeft="1dp"
-            android:drawableTop="@drawable/tab_bar_my_selected"
-            android:gravity="center_horizontal"
-            android:text="购物车"
+            android:orientation="vertical"
             android:clickable="true"
-            android:textColor="@color/black"
-            android:textSize="13sp"/>
-        />
+            android:gravity="center_horizontal">
+
+            <com.zomake.mobile.widget.FontTextView
+                android:id="@+id/icon_car"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_10"
+                android:text="\ue788"
+                android:textColor="@color/black"
+                android:textSize="20dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginLeft="2dp"
+            />
+            <TextView
+                android:id="@+id/tv_car"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="购物车"
+                android:textColor="@color/black"
+                android:layout_gravity="center_horizontal"
+                android:textSize="12dp" />
+        </LinearLayout>
+
     </LinearLayout>
 
     <com.jaydenxiao.common.irecyclerview.IRecyclerView
@@ -124,14 +159,16 @@
             android:text="邀请好友，各得30元代金券"
             android:textSize="13sp"
         />
-        <ImageView
-            android:layout_height="15dp"
-            android:layout_width="7dp"
-            android:background="@drawable/tab_bar_my_selected"
+        <com.zomake.mobile.widget.FontTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginRight="16dp"
             android:layout_alignParentRight="true"
-            android:scaleType="center"
             android:layout_centerHorizontal="true"
-        />
+            android:text="\ue928"
+            android:textColor="@color/black"
+            android:textSize="20dp" />
     </RelativeLayout>
 
     <RelativeLayout
@@ -146,14 +183,17 @@
             android:text="设计师品牌入驻，享高额销售奖励"
             android:textSize="13sp"
         />
-        <ImageView
-            android:layout_height="15dp"
-            android:layout_width="7dp"
-            android:background="@drawable/tab_bar_my_selected"
+
+        <com.zomake.mobile.widget.FontTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginRight="16dp"
             android:layout_alignParentRight="true"
-            android:scaleType="center"
             android:layout_centerHorizontal="true"
-        />
+            android:text="\ue928"
+            android:textColor="@color/black"
+            android:textSize="20dp" />
     </RelativeLayout>
 
 </LinearLayout>
