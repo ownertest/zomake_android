@@ -18,6 +18,7 @@ import com.zomake.mobile.R;
 import com.zomake.mobile.bean.MainCatalogBean;
 import com.zomake.mobile.ui.Presenter.MainShopPresenter;
 import com.zomake.mobile.ui.activity.AddressManageActivity;
+import com.zomake.mobile.ui.activity.CarActivity;
 import com.zomake.mobile.ui.activity.InboxActivity;
 import com.zomake.mobile.ui.activity.OrderActivity;
 import com.zomake.mobile.ui.activity.SettingActivity;
@@ -86,7 +87,8 @@ public class MyFragment extends BaseFragment implements View.OnClickListener{
             Intent intent = new Intent(getActivity(), InboxActivity.class);
             startActivity(intent);
         } else if (v.getId() == R.id.car) {
-
+            Intent intent = new Intent(getActivity(), CarActivity.class);
+            startActivity(intent);
         } else if (v.getId() == R.id.user_center_set) {
             Intent intent = new Intent(getActivity(), SettingActivity.class);
             startActivity(intent);

@@ -40,6 +40,8 @@
         </activity>
         <activity android:name=".ui.activity.InboxActivity">
         </activity>
+        <activity android:name=".ui.activity.CarActivity">
+        </activity>
     </application>
 
 </manifest>
