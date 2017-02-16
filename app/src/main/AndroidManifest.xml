@@ -36,6 +36,10 @@
         </activity>
         <activity android:name=".ui.activity.AddressManageActivity">
         </activity>
+        <activity android:name=".ui.activity.WalletActivity">
+        </activity>
+        <activity android:name=".ui.activity.InboxActivity">
+        </activity>
     </application>
 
 </manifest>

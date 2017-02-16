@@ -18,8 +18,10 @@ import com.zomake.mobile.R;
 import com.zomake.mobile.bean.MainCatalogBean;
 import com.zomake.mobile.ui.Presenter.MainShopPresenter;
 import com.zomake.mobile.ui.activity.AddressManageActivity;
+import com.zomake.mobile.ui.activity.InboxActivity;
 import com.zomake.mobile.ui.activity.OrderActivity;
 import com.zomake.mobile.ui.activity.SettingActivity;
+import com.zomake.mobile.ui.activity.WalletActivity;
 import com.zomake.mobile.widget.FontTextView;
 import com.zomake.mobile.widget.SpacesItemDecoration;
 
@@ -81,7 +83,7 @@ public class MyFragment extends BaseFragment implements View.OnClickListener{
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.order) {
-            Intent intent = new Intent(getActivity(), AddressManageActivity.class);
+            Intent intent = new Intent(getActivity(), InboxActivity.class);
             startActivity(intent);
         } else if (v.getId() == R.id.car) {
 
