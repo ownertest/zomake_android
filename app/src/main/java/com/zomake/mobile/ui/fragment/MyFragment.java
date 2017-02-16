@@ -2,6 +2,8 @@ package com.zomake.mobile.ui.fragment;
 
 import android.content.Intent;
 import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.GridLayout;
 import android.widget.ImageView;
@@ -15,6 +17,8 @@ import com.jaydenxiao.common.irecyclerview.universaladapter.recyclerview.CommonR
 import com.zomake.mobile.R;
 import com.zomake.mobile.bean.MainCatalogBean;
 import com.zomake.mobile.ui.Presenter.MainShopPresenter;
+import com.zomake.mobile.ui.activity.AddressManageActivity;
+import com.zomake.mobile.ui.activity.OrderActivity;
 import com.zomake.mobile.ui.activity.SettingActivity;
 import com.zomake.mobile.widget.FontTextView;
 import com.zomake.mobile.widget.SpacesItemDecoration;
@@ -37,8 +41,8 @@ public class MyFragment extends BaseFragment implements View.OnClickListener{
     @Bind(R.id.user_center_set)
     FontTextView ft_set;
 
-    private Integer[] iconIds = {R.drawable.tab_bar_my_selected, R.drawable.tab_bar_my_selected, R.drawable.tab_bar_my_selected, R.drawable.tab_bar_my_selected, R.drawable.tab_bar_my_selected, R.drawable.tab_bar_my_selected};
-    private String[] iconTexts = {"钱包", "收益", "优惠", "足迹", "收藏", "礼物"};
+    private String[] iconIds = {"\uEA3B", "\ue794", "\ue7ac", "\ueac9", "\ue6df", "\ue6a4"};
+    private String[] iconTexts = {"钱包", "收货地址", "优惠", "收件箱", "收藏", "反馈"};
     private CommonRecycleViewAdapter<String> adapter;
 
     @Override
@@ -66,7 +70,7 @@ public class MyFragment extends BaseFragment implements View.OnClickListener{
             @Override
             public void convert(ViewHolderHelper helper, String text) {
                 helper.setText(R.id.name, text);
-                helper.setBackgroundRes(R.id.image, iconIds[helper.getAdapterPosition() - 2]);
+                helper.setText(R.id.ftv_icon, iconIds[helper.getAdapterPosition() - 2]);
             }
         };
         adapter.addAll(Arrays.asList(iconTexts));
@@ -77,7 +81,8 @@ public class MyFragment extends BaseFragment implements View.OnClickListener{
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.order) {
-
+            Intent intent = new Intent(getActivity(), AddressManageActivity.class);
+            startActivity(intent);
         } else if (v.getId() == R.id.car) {
 
         } else if (v.getId() == R.id.user_center_set) {

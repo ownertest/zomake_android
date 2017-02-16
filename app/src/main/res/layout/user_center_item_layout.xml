@@ -7,11 +7,16 @@
     android:padding="5dp"
     android:background="@color/white">
 
-    <ImageView
-        android:id="@+id/image"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-        android:scaleType="fitCenter" />
+    <com.zomake.mobile.widget.FontTextView
+        android:id="@+id/ftv_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_alignParentRight="true"
+        android:layout_centerHorizontal="true"
+        android:text="\ue928"
+        android:textColor="#666666"
+        android:textSize="20dp" />
 
     <TextView
         android:id="@+id/name"
@@ -20,6 +25,6 @@
         android:layout_marginTop="5dp"
         android:gravity="center"
         android:text="居家"
-        android:textColor="@color/black"
-        android:textSize="13sp" />
+        android:textColor="#666666"
+        android:textSize="12sp" />
 </LinearLayout>

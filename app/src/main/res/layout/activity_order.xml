@@ -8,9 +8,22 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context="com.zomake.mobile.ui.activity.OrderActivity">
+
+    <android.support.design.widget.TabLayout
+        android:id="@+id/tabs"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:tabBackground="@color/white"
+        app:tabIndicatorColor="@color/blue"
+        app:tabMaxWidth="60dp"
+        app:tabSelectedTextColor="@color/black"
+        app:tabTextColor="#666666">
+    </android.support.design.widget.TabLayout>
+
     <android.support.v4.view.ViewPager
         android:id="@+id/view_pager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"></android.support.v4.view.ViewPager>
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+    </android.support.v4.view.ViewPager>
 </LinearLayout>

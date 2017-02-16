@@ -34,6 +34,8 @@
         </activity>
         <activity android:name=".ui.activity.SettingActivity">
         </activity>
+        <activity android:name=".ui.activity.AddressManageActivity">
+        </activity>
     </application>
 
 </manifest>
