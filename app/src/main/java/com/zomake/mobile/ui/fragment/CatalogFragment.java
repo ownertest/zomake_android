@@ -1,6 +1,7 @@
 package com.zomake.mobile.ui.fragment;
 
 import android.support.v7.widget.GridLayoutManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -52,6 +53,7 @@ public class CatalogFragment extends BaseFragment<MainCatalogPresenter> implemen
             @Override
             public void convert(ViewHolderHelper helper, MainCatalogBean.DataBean.AttachmentBeanXX.ChildrenBean productsDataBean) {
                 helper.setText(R.id.name, productsDataBean.name);
+                Log.e("123", productsDataBean.banner);
                 Glide.with(getActivity()).load("https://shop-cdn.zomake.com/" + productsDataBean.banner).into((ImageView) helper.getView(R.id.image));
             }
         };

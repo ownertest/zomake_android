@@ -9,5 +9,7 @@
     <dimen name="text_view_icon_margin">5dp</dimen>
     <dimen name="text_view_icon_padding">5dp</dimen>
     <dimen name="margin_10">10dp</dimen>
+    <dimen name="margin_12">12dp</dimen>
+
 
 </resources>

@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_setting"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="com.zomake.mobile.ui.activity.SettingActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        >
+        <TextView
+            android:id="@+id/clear"
+           android:layout_height="wrap_content"
+           android:layout_width="match_parent"
+           android:text="清除缓存"
+            android:layout_centerInParent="true"
+           android:textSize="10sp"
+           android:layout_marginLeft="16dp"
+        />
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_marginTop="@dimen/margin_12"
+            android:text="10.20 M"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginRight="16dp"
+            android:textSize="10sp"
+            android:layout_centerInParent="true"
+            android:textColor="@color/blue"/>
+    </RelativeLayout>
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/divider" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp">
+        <TextView
+            android:id="@+id/tv_comment"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:text="给我评价"
+            android:layout_centerInParent="true"
+            android:textSize="10sp"
+            android:layout_marginLeft="16dp"
+        />
+        <com.zomake.mobile.widget.FontTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginRight="16dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerInParent="true"
+            android:text="\ue928"
+            android:textColor="@color/gray_deep"
+            android:textSize="20dp" />
+    </RelativeLayout>
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/divider" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+    >
+        <TextView
+            android:id="@+id/tv_lang"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:text="语言切换"
+            android:layout_centerInParent="true"
+            android:textSize="10sp"
+            android:layout_marginLeft="16dp"
+        />
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_marginTop="@dimen/margin_12"
+            android:text="中文简体"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginRight="16dp"
+            android:textSize="10sp"
+            android:layout_centerInParent="true"
+            android:textColor="@color/black"/>
+    </RelativeLayout>
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/divider" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+    >
+        <TextView
+            android:id="@+id/tv_about"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:text="关于"
+            android:layout_centerInParent="true"
+            android:textSize="10sp"
+            android:layout_marginLeft="16dp"
+        />
+
+        <com.zomake.mobile.widget.FontTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginRight="16dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerInParent="true"
+            android:text="\ue928"
+            android:textColor="@color/gray_deep"
+            android:textSize="20dp" />
+    </RelativeLayout>
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/divider" />
+
+    <com.zomake.mobile.widget.StateButton
+        android:text="退出登录"
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="42dp"
+        android:id="@+id/bt_log_out"
+        android:enabled="true"
+        android:textSize="12sp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_gravity="center_horizontal"
+        app:normalBackgroundColor="@color/white"
+        app:normalTextColor="@color/red"
+        app:normalStrokeColor="@color/red"
+        app:normalStrokeWidth="0.5dp"
+    />
+</LinearLayout>

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_inbox"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.zomake.mobile.ui.activity.InboxActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp">
+
+        <com.zomake.mobile.widget.FontTextView
+            android:id="@+id/sys_msg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_centerVertical="true"
+            android:text="\ue6a5"
+            android:textColor="@color/gray_deep"
+            android:layout_marginLeft="16dp"
+            android:textSize="20dp" />
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="系统通知"
+            android:layout_centerInParent="true"
+            android:layout_toRightOf="@+id/sys_msg"
+            android:textSize="10sp"
+            android:layout_marginLeft="16dp"
+        />
+        <com.zomake.mobile.widget.FontTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginRight="16dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerInParent="true"
+            android:text="\ue928"
+            android:textColor="@color/gray_deep"
+            android:textSize="20dp" />
+    </RelativeLayout>
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/divider" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp">
+
+        <com.zomake.mobile.widget.FontTextView
+            android:id="@+id/user_msg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_centerVertical="true"
+            android:text="\ue788"
+            android:textColor="@color/gray_deep"
+            android:layout_marginLeft="16dp"
+            android:textSize="20dp" />
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="交易物流"
+            android:layout_centerInParent="true"
+            android:layout_toRightOf="@+id/user_msg"
+            android:textSize="10sp"
+            android:layout_marginLeft="16dp"
+        />
+        <com.zomake.mobile.widget.FontTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginRight="16dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerInParent="true"
+            android:text="\ue928"
+            android:textColor="@color/gray_deep"
+            android:textSize="20dp" />
+    </RelativeLayout>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/divider" />
+
+</LinearLayout>
