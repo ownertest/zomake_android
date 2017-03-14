@@ -42,6 +42,8 @@
         </activity>
         <activity android:name=".ui.activity.CarActivity">
         </activity>
+        <activity android:name=".ui.activity.FavoriteActivity">
+        </activity>
     </application>
 
 </manifest>

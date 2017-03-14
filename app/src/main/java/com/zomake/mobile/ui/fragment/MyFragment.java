@@ -3,8 +3,11 @@ package com.zomake.mobile.ui.fragment;
 import android.content.Intent;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.GridLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -14,11 +17,13 @@ import com.jaydenxiao.common.base.BaseFragment;
 import com.jaydenxiao.common.irecyclerview.IRecyclerView;
 import com.jaydenxiao.common.irecyclerview.universaladapter.ViewHolderHelper;
 import com.jaydenxiao.common.irecyclerview.universaladapter.recyclerview.CommonRecycleViewAdapter;
+import com.jaydenxiao.common.irecyclerview.universaladapter.recyclerview.OnItemClickListener;
 import com.zomake.mobile.R;
 import com.zomake.mobile.bean.MainCatalogBean;
 import com.zomake.mobile.ui.Presenter.MainShopPresenter;
 import com.zomake.mobile.ui.activity.AddressManageActivity;
 import com.zomake.mobile.ui.activity.CarActivity;
+import com.zomake.mobile.ui.activity.FavoriteActivity;
 import com.zomake.mobile.ui.activity.InboxActivity;
 import com.zomake.mobile.ui.activity.OrderActivity;
 import com.zomake.mobile.ui.activity.SettingActivity;
@@ -29,9 +34,7 @@ import com.zomake.mobile.widget.SpacesItemDecoration;
 import java.util.Arrays;
 import butterknife.Bind;
 
-/**
- * Created by Ryan on 17/1/18.
- */
+
 
 public class MyFragment extends BaseFragment implements View.OnClickListener{
 
@@ -76,6 +79,33 @@ public class MyFragment extends BaseFragment implements View.OnClickListener{
                 helper.setText(R.id.ftv_icon, iconIds[helper.getAdapterPosition() - 2]);
             }
         };
+        adapter.setOnItemClickListener(new OnItemClickListener() {
+            @Override
+            public void onItemClick(ViewGroup parent, View view, Object o, int position) {
+                Log.e("123", position + "");
+                if (position == 2) {
+                    Intent intent = new Intent(getActivity(), WalletActivity.class);
+                    startActivity(intent);
+                } else if (position == 3) {
+                    Intent intent = new Intent(getActivity(), AddressManageActivity.class);
+                    startActivity(intent);
+                } else if (position == 4) {
+                    Intent intent = new Intent(getActivity(), CarActivity.class);
+                    startActivity(intent);
+                } else if (position == 5) {
+                    Intent intent = new Intent(getActivity(), InboxActivity.class);
+                    startActivity(intent);
+                } else if (position == 6) {
+                    Intent intent = new Intent(getActivity(), FavoriteActivity.class);
+                    startActivity(intent);
+                }
+            }
+
+            @Override
+            public boolean onItemLongClick(ViewGroup parent, View view, Object o, int position) {
+                return false;
+            }
+        });
         adapter.addAll(Arrays.asList(iconTexts));
         recyclerView.addItemDecoration(new SpacesItemDecoration(1));
         recyclerView.setAdapter(adapter);
@@ -84,7 +114,7 @@ public class MyFragment extends BaseFragment implements View.OnClickListener{
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.order) {
-            Intent intent = new Intent(getActivity(), InboxActivity.class);
+            Intent intent = new Intent(getActivity(), OrderActivity.class);
             startActivity(intent);
         } else if (v.getId() == R.id.car) {
             Intent intent = new Intent(getActivity(), CarActivity.class);
