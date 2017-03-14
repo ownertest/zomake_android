@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_car"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="com.zomake.mobile.ui.activity.CarActivity">
+    <LinearLayout android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_margin="16dp"
+                  android:orientation="vertical"
+                  android:background="@drawable/white_rectangle_corner"
+    >
+        <ImageView
+            android:id="@+id/pic"
+            android:layout_width="300dp"
+            android:layout_height="150dp"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/user_info_default_banner"
+        />
+
+        <RelativeLayout android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      >
+
+            <ImageView
+                android:id="@+id/avatar"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_centerVertical="true"
+                android:layout_marginTop="16dp"
+                android:layout_marginLeft="16dp"
+
+                android:background="@drawable/store_avatar"
+            />
+            <TextView
+                android:id="@+id/name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:textColor="@color/gray_deep"
+                android:layout_toRightOf="@+id/avatar"
+                android:text="手机壳6／6s"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="16dp"
+            />
+
+            <ImageView
+                android:id="@+id/praise"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/store_avatar"
+            />
+
+        </RelativeLayout>
+
+
+        <TextView
+            android:id="@+id/intro"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="13sp"
+            android:textColor="@color/light_gray"
+            android:text="这是店铺1"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+        />
+    </LinearLayout>
+</LinearLayout>

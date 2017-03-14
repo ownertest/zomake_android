@@ -23,9 +23,7 @@ import com.zomake.mobile.ui.Presenter.MainCatalogPresenter;
 
 import butterknife.Bind;
 
-/**
- * Created by Ryan on 17/1/19.
- */
+
 public class CatalogFragment extends BaseFragment<MainCatalogPresenter> implements BaseContract.CatalogView {
     @Bind(R.id.tv_recyclerView)
     IRecyclerView recyclerView;
@@ -53,7 +51,6 @@ public class CatalogFragment extends BaseFragment<MainCatalogPresenter> implemen
             @Override
             public void convert(ViewHolderHelper helper, MainCatalogBean.DataBean.AttachmentBeanXX.ChildrenBean productsDataBean) {
                 helper.setText(R.id.name, productsDataBean.name);
-                Log.e("123", productsDataBean.banner);
                 Glide.with(getActivity()).load("https://shop-cdn.zomake.com/" + productsDataBean.banner).into((ImageView) helper.getView(R.id.image));
             }
         };
