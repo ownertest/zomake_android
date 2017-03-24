@@ -4,6 +4,8 @@ import java.util.List;
 
 public interface DataIO<T> {
 
+    void set(List<T> elements);
+
     void add(T elem);
 
     void addAt(int location, T elem);
@@ -11,6 +13,10 @@ public interface DataIO<T> {
     void addAll(List<T> elements);
 
     void addAllAt(int location, List<T> elements);
+
+    void resetAt(int location, List<T> elements);
+
+    void resetRange(int start, int count, List<T> elements);
 
     void remove(T elem);
 

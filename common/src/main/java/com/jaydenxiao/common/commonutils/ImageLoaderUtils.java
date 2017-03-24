@@ -1,12 +1,17 @@
 package com.jaydenxiao.common.commonutils;
 
 import android.content.Context;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.DecodeFormat;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.load.resource.drawable.GlideDrawable;
+import com.bumptech.glide.request.RequestListener;
+import com.bumptech.glide.request.target.Target;
 import com.jaydenxiao.common.R;
+import com.jaydenxiao.common.baseapp.BaseApp;
 
 import java.io.File;
 
@@ -87,6 +92,39 @@ public class ImageLoaderUtils {
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .error(R.drawable.toux2)
                 .centerCrop().transform(new GlideRoundTransformUtil(context)).into(imageView);
+    }
+
+    /**
+     * 自适应宽度加载图片。保持图片的长宽比例不变，通过修改imageView的高度来完全显示图片。
+     */
+    public static void displayIntoUseFitWidth(Context context, final ImageView imageView, final String imageUrl) {
+        Glide.with(context)
+                .load(imageUrl)
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .listener(new RequestListener<String, GlideDrawable>() {
+                    @Override
+                    public boolean onException(Exception e, String model, Target<GlideDrawable> target, boolean isFirstResource) {
+                        return false;
+                    }
+
+                    @Override
+                    public boolean onResourceReady(GlideDrawable resource, String model, Target<GlideDrawable> target, boolean isFromMemoryCache, boolean isFirstResource) {
+                        if (imageView == null) {
+                            return false;
+                        }
+                        int imageWidth = resource.getIntrinsicWidth();
+                        int imageHeight = resource.getIntrinsicHeight();
+                        int height = context.getResources().getDisplayMetrics().widthPixels * imageHeight / imageWidth;
+                        ViewGroup.LayoutParams para = imageView.getLayoutParams();
+                        para.height = height;
+                        imageView.setLayoutParams(para);
+                        return false;
+                    }
+                })
+                .crossFade()
+                .placeholder(R.drawable.ic_image_loading)
+                .error(R.drawable.ic_image_loading)
+                .into(imageView);
     }
 
 }

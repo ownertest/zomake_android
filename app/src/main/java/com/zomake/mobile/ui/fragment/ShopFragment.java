@@ -7,29 +7,29 @@ import android.support.v4.view.ViewPager;
 
 import com.jaydenxiao.common.base.BaseFragment;
 import com.jaydenxiao.common.base.BaseFragmentAdapter;
+import com.jaydenxiao.common.commonwidget.FontTextView;
 import com.zomake.mobile.R;
 import com.zomake.mobile.app.AppConstant;
 import com.zomake.mobile.bean.MainCatalogBean;
 import com.zomake.mobile.contract.BaseContract;
 import com.zomake.mobile.ui.Presenter.MainShopPresenter;
 import com.zomake.mobile.utils.MyUtils;
-import com.zomake.mobile.widget.FontTextView;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 
 /**
  * Created by Ryan on 17/1/18.
  */
 
 public class ShopFragment extends BaseFragment<MainShopPresenter> implements BaseContract.MainView {
-    @Bind(R.id.tabs)
+    @BindView(R.id.tabs)
     TabLayout tabs;
-    @Bind(R.id.add_channel_iv)
+    @BindView(R.id.add_channel_iv)
     FontTextView addChannelIv;
-    @Bind(R.id.view_pager)
+    @BindView(R.id.view_pager)
     ViewPager viewPager;
     private BaseFragmentAdapter fragmentAdapter;
 

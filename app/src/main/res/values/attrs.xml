@@ -4,10 +4,10 @@
     <attr name="item_count" format="integer"></attr>
 
     <declare-styleable name="ViewPagerIndicator">
-        <attr name="item_count" />
+        <attr name="item_count"/>
     </declare-styleable>
     <declare-styleable name="contact_view">
-        <attr name="contact_type" format="string" />
+        <attr name="contact_type" format="string"/>
     </declare-styleable>
     <declare-styleable name="StateButton">
 
@@ -38,5 +38,9 @@
         <!--animation duration-->
         <attr name="animationDuration" format="integer|reference"/>
 
+    </declare-styleable>
+
+    <declare-styleable name="my_counter_size">
+        <attr name="count_max" format="integer" />
     </declare-styleable>
 </resources>

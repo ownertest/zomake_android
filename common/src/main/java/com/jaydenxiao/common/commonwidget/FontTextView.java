@@ -1,4 +1,4 @@
-package com.zomake.mobile.widget;
+package com.jaydenxiao.common.commonwidget;
 
 import android.content.Context;
 import android.graphics.Typeface;

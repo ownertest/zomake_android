@@ -21,11 +21,11 @@ import com.zomake.mobile.contract.BaseContract;
 import com.zomake.mobile.ui.Presenter.MainCatalogPresenter;
 
 
-import butterknife.Bind;
+import butterknife.BindView;
 
 
 public class CatalogFragment extends BaseFragment<MainCatalogPresenter> implements BaseContract.CatalogView {
-    @Bind(R.id.tv_recyclerView)
+    @BindView(R.id.tv_recyclerView)
     IRecyclerView recyclerView;
     private CommonRecycleViewAdapter<MainCatalogBean.DataBean.AttachmentBeanXX.ChildrenBean> adapter;
     private MainCatalogBean.DataBean.AttachmentBeanXX childrenBeanList;

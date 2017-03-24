@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:clipToPadding="true"
+    android:fitsSystemWindows="true"
+    tools:context="com.zomake.mobile.ui.activity.ProductDetailActivity">
+
+    <com.jaydenxiao.common.irecyclerview.IRecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/detail_bottom"
+        app:loadMoreEnabled="false"
+        app:refreshEnabled="false"/>
+
+    <LinearLayout
+        android:id="@+id/detail_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal">
+
+        <com.jaydenxiao.common.commonwidget.BorderFontTextView
+            android:id="@+id/icon_car"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:gravity="center"
+            android:text="\ue788"
+            android:textColor="#666666"
+            android:textSize="20sp"
+            app:borderRight="true"
+            app:borderTop="true"
+            app:borderBottom="true"
+            app:border_width="2dp"
+            app:border_color="@color/gray"/>
+
+        <com.jaydenxiao.common.commonwidget.BorderFontTextView
+            android:id="@+id/icon_chat"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:gravity="center"
+            android:text="\ue6d1"
+            android:textColor="#666666"
+            android:textSize="20sp"
+            app:borderTop="true"
+            app:borderBottom="true"
+            app:border_width="2dp"
+            app:border_color="@color/gray"/>
+
+        <Button
+            android:id="@+id/btn_car"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:background="@color/gray_deep"
+            android:text="加入购物车"
+            android:textColor="@color/white"/>
+
+        <Button
+            android:id="@+id/btn_buy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:background="@color/blue"
+            android:text="立即购买"
+            android:textColor="@color/white"/>
+    </LinearLayout>
+
+</RelativeLayout>

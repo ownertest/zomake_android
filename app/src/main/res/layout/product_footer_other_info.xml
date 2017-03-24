@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:background="@drawable/line">
+
+        <com.jaydenxiao.common.commonwidget.FontTextView
+            style="@style/role_right_gray_13sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="\ue788   预计发货时间"/>
+
+        <TextView
+            style="@style/role_right_gray_13sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:text="3-7个工作日"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:background="@drawable/line">
+
+        <com.jaydenxiao.common.commonwidget.FontTextView
+            style="@style/role_right_gray_13sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="\ue788   免运费"/>
+
+        <TextView
+            style="@style/role_right_gray_13sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:text="中国大陆地区"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:background="@drawable/line">
+
+        <com.jaydenxiao.common.commonwidget.FontTextView
+            style="@style/role_right_gray_13sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="\ue788   售后服务"
+            android:singleLine="true"/>
+
+        <TextView
+            style="@style/role_right_gray_13sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:text="订制类商品不提供7天无理由退换货服务"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:background="@drawable/line">
+
+        <com.jaydenxiao.common.commonwidget.FontTextView
+            style="@style/role_right_gray_13sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="\ue788   正品保障"/>
+
+        <TextView
+            style="@style/role_right_gray_13sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:text="正版保证"/>
+    </RelativeLayout>
+
+</LinearLayout>

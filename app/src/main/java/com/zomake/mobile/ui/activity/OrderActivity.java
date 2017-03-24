@@ -18,13 +18,13 @@ import com.zomake.mobile.utils.MyUtils;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 
 public class OrderActivity extends BaseActivity {
 
-    @Bind(R.id.view_pager)
+    @BindView(R.id.view_pager)
     ViewPager viewPager;
-    @Bind(R.id.tabs)
+    @BindView(R.id.tabs)
     TabLayout tabs;
 
     private String[] orderText = {"全部", "待付款", "待发货", "待收货", "待评价", "售后中"};

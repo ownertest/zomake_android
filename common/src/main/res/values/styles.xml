@@ -9,7 +9,7 @@
     <!--<attr name="dayNightBackgroundDrawable" format="color|reference" />-->
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.Light">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
@@ -27,7 +27,7 @@
     </style>
 
     <!--白天主题，此处直接和AppTheme一样-->
-    <style name="DayTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="DayTheme" parent="Theme.AppCompat.Light">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/night_one_text_color</item>
@@ -37,9 +37,12 @@
         <item name="dayNightTwoTextColor">@color/day_two_text_color</item>
         <item name="dayNightThreeTextColor">@color/day_three_text_color</item>
         <item name="dayNightBackgroundDrawable">@color/day_backgroup_color</item>
+
+        <item name="actionBarStyle">@style/CustomToolbar</item>
+        <item name="android:windowAnimationStyle">@style/NavigatorAnimNormal</item>
     </style>
     <!--夜间主题-->
-    <style name="NightTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="NightTheme" parent="Theme.AppCompat.Light">
         <item name="colorPrimary">@color/night_backgroup_color</item>
         <item name="colorPrimaryDark">@color/night_backgroup_color</item>
         <item name="colorAccent">@color/night_backgroup_color</item>
@@ -50,6 +53,8 @@
         <item name="dayNightThreeTextColor">@color/night_there_text_color</item>
         <item name="dayNightBackgroundDrawable">@color/night_there_text_color</item>
 
+        <item name="actionBarStyle">@style/CustomToolbar</item>
+        <item name="android:windowAnimationStyle">@style/NavigatorAnimNormal</item>
     </style>
 
     <!--窗口淡入淡出动画-->
@@ -58,17 +63,49 @@
         <item name="android:windowExitAnimation">@android:anim/fade_out</item>
     </style>
 
+    <style name="CustomToolbar" parent="Widget.AppCompat.ActionBar">
+        <item name="contentInsetStart">0dp</item><!-- 设置该属性解决空白部分-->
+        <item name="contentInsetEnd">0dp</item>
+        <item name="android:actionBarSize">48dp</item>
+        <item name="android:windowContentOverlay">@null</item>
+    </style>
+
     <!--普通dialog-->
     <style name="CustomProgressDialog" parent="@style/CustomDialog">
         <item name="android:windowBackground">@android:color/transparent</item>
         <item name="android:windowNoTitle">true</item>
     </style>
+
     <style name="CustomDialog" parent="@android:style/Theme.Dialog">
         <item name="android:windowFrame">@null</item>
         <item name="android:windowIsFloating">true</item>
         <item name="android:windowContentOverlay">@null</item>
         <item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item>
         <item name="android:windowSoftInputMode">stateUnspecified|adjustPan</item>
+    </style>
+
+    <style name="BottomDialogs" parent="@android:style/Theme.Dialog">
+        <item name="android:windowIsTranslucent">false</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:windowAnimationStyle">@style/BottomDialogsAnimation</item>
+
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowBackground">@android:color/white</item>
+    </style>
+
+    <style name="BottomDialogsAnimation">
+        <item name="android:windowEnterAnimation">@anim/bottom_sheet_show</item>
+        <item name="android:windowExitAnimation">@anim/bottom_sheet_hide</item>
+    </style>
+
+    <style name="NavigatorAnimNormal">
+        <item name="android:activityOpenEnterAnimation">@anim/slide_right_in</item>
+        <item name="android:activityOpenExitAnimation">@anim/slide_left_out</item>
+        <item name="android:activityCloseEnterAnimation">@anim/slide_left_in</item>
+        <item name="android:activityCloseExitAnimation">@anim/slide_right_out</item>
     </style>
 
 </resources>

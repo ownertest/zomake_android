@@ -1,21 +1,22 @@
 package com.jaydenxiao.common.commonwidget;
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
 
 import com.jaydenxiao.common.R;
 import com.jaydenxiao.common.commonutils.DisplayUtil;
 
 
-public class NormalTitleBar extends RelativeLayout {
+public class NormalTitleBar extends RelativeLayout implements View.OnClickListener {
 
+    private View bottomLine;
     private ImageView ivRight;
-    private TextView ivBack,tvTitle, tvRight;
+    private FontTextView ivBack, tvTitle, tvRight, tvSecLeft;
     private RelativeLayout rlCommonTitle;
     private Context context;
 
@@ -28,17 +29,20 @@ public class NormalTitleBar extends RelativeLayout {
         super(context, attrs);
         this.context = context;
         View.inflate(context, R.layout.bar_normal, this);
-        ivBack = (TextView) findViewById(R.id.tv_back);
-        tvTitle = (TextView) findViewById(R.id.tv_title);
-        tvRight = (TextView) findViewById(R.id.tv_right);
+        ivBack = (FontTextView) findViewById(R.id.tv_back);
+        tvTitle = (FontTextView) findViewById(R.id.tv_title);
+        tvSecLeft = (FontTextView) findViewById(R.id.tv_left);
+        tvRight = (FontTextView) findViewById(R.id.tv_right);
         ivRight = (ImageView) findViewById(R.id.image_right);
+        bottomLine = findViewById(R.id.bottom_line);
         rlCommonTitle = (RelativeLayout) findViewById(R.id.common_title);
         //setHeaderHeight();
+        ivBack.setOnClickListener(this);
     }
 
     public void setHeaderHeight() {
-            rlCommonTitle.setPadding(0, DisplayUtil.getStatusBarHeight(context), 0, 0);
-            rlCommonTitle.requestLayout();
+        rlCommonTitle.setPadding(0, DisplayUtil.getStatusBarHeight(context), 0, 0);
+        rlCommonTitle.requestLayout();
     }
 
     /**
@@ -54,24 +58,52 @@ public class NormalTitleBar extends RelativeLayout {
 
     /**
      * 设置标题栏左侧字符串
+     *
      * @param visiable
      */
-    public void setTvLeftVisiable(boolean visiable){
-        if (visiable){
+    public void setTvLeftVisible(boolean visiable) {
+        if (visiable) {
             ivBack.setVisibility(View.VISIBLE);
-        }else{
+        } else {
             ivBack.setVisibility(View.GONE);
         }
     }
 
     /**
      * 设置标题栏左侧字符串
+     *
      * @param tvLeftText
      */
-    public void setTvLeft(String tvLeftText){
+    public void setTvLeft(String tvLeftText) {
         ivBack.setText(tvLeftText);
     }
 
+    /**
+     * 设置标题栏第二个左侧字符串
+     *
+     * @param visible
+     */
+    public void setSecTvLeftVisible(boolean visible) {
+        if (visible) {
+            tvSecLeft.setVisibility(View.VISIBLE);
+        } else {
+            tvSecLeft.setVisibility(View.GONE);
+        }
+    }
+
+    /**
+     * 设置标题栏左侧字符串
+     *
+     * @param tvLeftText
+     */
+    public void setSecTvLeft(String tvLeftText) {
+        tvSecLeft.setText(tvLeftText);
+        tvSecLeft.setVisibility(VISIBLE);
+    }
+
+    public FontTextView getTvSecLeft() {
+        return tvSecLeft;
+    }
 
     /**
      * 管理标题
@@ -110,10 +142,11 @@ public class NormalTitleBar extends RelativeLayout {
 
     /**
      * 获取右按钮
+     *
      * @return
      */
     public View getRightImage() {
-       return ivRight;
+        return ivRight;
     }
 
     /**
@@ -122,8 +155,9 @@ public class NormalTitleBar extends RelativeLayout {
      * @param id
      */
     public void setLeftImagSrc(int id) {
-        ivBack.setCompoundDrawables(getResources().getDrawable(id),null,null,null);
+        ivBack.setCompoundDrawables(getResources().getDrawable(id), null, null, null);
     }
+
     /**
      * 左文字
      *
@@ -148,15 +182,18 @@ public class NormalTitleBar extends RelativeLayout {
      * 点击事件
      */
     public void setOnBackListener(OnClickListener listener) {
-        ivBack.setOnClickListener(listener);
+        if (listener != null)
+            ivBack.setOnClickListener(listener);
     }
 
     public void setOnRightImagListener(OnClickListener listener) {
-        ivRight.setOnClickListener(listener);
+        if (listener != null)
+            ivRight.setOnClickListener(listener);
     }
 
     public void setOnRightTextListener(OnClickListener listener) {
-        tvRight.setOnClickListener(listener);
+        if (listener != null)
+            tvRight.setOnClickListener(listener);
     }
 
     /**
@@ -167,8 +204,20 @@ public class NormalTitleBar extends RelativeLayout {
     public void setBackGroundColor(int color) {
         rlCommonTitle.setBackgroundColor(color);
     }
+
     public Drawable getBackGroundDrawable() {
         return rlCommonTitle.getBackground();
+    }
+
+    public void setVisibleBottomLine(boolean visible) {
+        bottomLine.setVisibility(visible ? VISIBLE : GONE);
+    }
+
+    @Override
+    public void onClick(View v) {
+        if (v.getId() == R.id.tv_back && context instanceof Activity) {
+            ((Activity) context).finish();
+        }
     }
 
 }

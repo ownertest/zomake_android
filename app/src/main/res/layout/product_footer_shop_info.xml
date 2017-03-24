@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingTop="15dp"
+                android:paddingBottom="10dp"
+                android:background="@drawable/border_1">
+
+    <com.jaydenxiao.common.commonwidget.FontTextView
+        android:id="@+id/info_tip"
+        style="@style/black_13sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="20dp"
+        android:text="\ue788 品牌介绍"/>
+
+    <TextView
+        android:id="@+id/shop_name"
+        style="@style/blue_13sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingRight="20dp"
+        android:layout_alignParentRight="true"
+        android:text="设计师"/>
+
+    <TextView
+        android:id="@+id/shop_info"
+        style="@style/role_right_gray_13sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="20dp"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp"
+        android:paddingRight="20dp"
+        android:layout_below="@id/info_tip"
+        android:text="if a picture paints a thousand words."/>
+
+</RelativeLayout>

@@ -44,6 +44,9 @@
         </activity>
         <activity android:name=".ui.activity.FavoriteActivity">
         </activity>
+        <activity android:name=".ui.activity.ProductDetailActivity">
+        </activity>
+        <activity android:name=".ui.activity.CatalogProductListActivity"/>
     </application>
 
 </manifest>

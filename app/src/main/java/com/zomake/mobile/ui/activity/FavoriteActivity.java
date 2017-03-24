@@ -1,29 +1,27 @@
 package com.zomake.mobile.ui.activity;
 
+import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 
 import com.jaydenxiao.common.base.BaseActivity;
 import com.jaydenxiao.common.base.BaseFragmentAdapter;
 import com.zomake.mobile.R;
 import com.zomake.mobile.ui.fragment.GoodsFragment;
-import com.zomake.mobile.ui.fragment.OrderListFragment;
 import com.zomake.mobile.ui.fragment.StoreFragment;
 import com.zomake.mobile.utils.MyUtils;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 
 public class FavoriteActivity extends BaseActivity {
 
-    @Bind(R.id.view_pager)
+    @BindView(R.id.view_pager)
     ViewPager viewPager;
-    @Bind(R.id.tabs)
+    @BindView(R.id.tabs)
     TabLayout tabs;
 
     private String[] orderText = {"商品", "店铺"};

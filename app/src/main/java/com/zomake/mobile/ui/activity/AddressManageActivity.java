@@ -14,11 +14,11 @@ import com.zomake.mobile.widget.SpacesItemDecoration;
 
 import java.util.Arrays;
 
-import butterknife.Bind;
+import butterknife.BindView;
 
 public class AddressManageActivity extends BaseActivity {
 
-    @Bind(R.id.address_re)
+    @BindView(R.id.address_re)
     IRecyclerView recyclerView;
 
     private CommonRecycleViewAdapter<String> adapter;

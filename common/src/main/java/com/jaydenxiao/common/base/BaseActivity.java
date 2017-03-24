@@ -6,8 +6,10 @@ import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.view.Window;
+import android.view.LayoutInflater;
+import android.view.View;
 
 import com.jaydenxiao.common.BuildConfig;
 import com.jaydenxiao.common.R;
@@ -16,56 +18,113 @@ import com.jaydenxiao.common.baserx.RxManager;
 import com.jaydenxiao.common.commonutils.TUtil;
 import com.jaydenxiao.common.commonutils.ToastUitl;
 import com.jaydenxiao.common.commonwidget.LoadingDialog;
+import com.jaydenxiao.common.commonwidget.NormalTitleBar;
 import com.jaydenxiao.common.commonwidget.StatusBarCompat;
 import com.jaydenxiao.common.daynightmodeutils.ChangeModeController;
 import com.umeng.analytics.MobclickAgent;
 
 import butterknife.ButterKnife;
+import butterknife.Unbinder;
 
 public abstract class BaseActivity<T extends BasePresenter> extends AppCompatActivity {
     public T mPresenter;
     public Context mContext;
     public RxManager mRxManager;
+    private View mCommonActionBar;
+    private Unbinder mUnbinder;
 
-        @Override
+    @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mRxManager=new RxManager();
-        doBeforeSetcontentView();
+        mRxManager = new RxManager();
+        doBeforeSetContentView();
         setContentView(getLayoutId());
-        ButterKnife.bind(this);
+        initActionBar();
+        mUnbinder = ButterKnife.bind(this);
         mContext = this;
         mPresenter = TUtil.getT(this, 0);
-        if(mPresenter!=null){
-            mPresenter.mContext=this;
+        if (mPresenter != null) {
+            mPresenter.mContext = this;
         }
+        this.initData(getIntent().getExtras());
         this.initPresenter();
         this.initView();
     }
 
     /**
+     * 初始化ActionBar
+     */
+    private void initActionBar() {
+        mCommonActionBar = LayoutInflater.from(this).inflate(
+                R.layout.base_title_bar, null);
+        ActionBar mActionBar = getSupportActionBar();
+        if (mActionBar != null) {
+            mActionBar.setDisplayShowCustomEnabled(true);
+            mActionBar.setDisplayShowTitleEnabled(false);
+            mActionBar.setDisplayShowHomeEnabled(false);
+            mActionBar.setElevation(0);
+            mActionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+            mActionBar.setBackgroundDrawable(getResources().getDrawable(
+                    R.drawable.white_drawable));
+            mActionBar.setCustomView(mCommonActionBar);
+            if (isShowTitleBar())
+                mActionBar.show();
+            else
+                mActionBar.hide();
+        }
+    }
+
+    /**
+     * 标题栏布局.
+     */
+    private NormalTitleBar mTitleBar = null;
+
+    public NormalTitleBar getTitleBar() {
+        if (mTitleBar == null) {
+            mTitleBar = (NormalTitleBar) mCommonActionBar.findViewById(R.id.title_bar);
+        }
+        if (mTitleBar == null) {
+            mTitleBar = new NormalTitleBar(this);
+            mTitleBar.setVisibility(View.GONE);
+        }
+        return mTitleBar;
+    }
+
+    protected boolean isShowTitleBar() {
+        return true;
+    }
+
+    /**
      * 设置layout前配置
      */
-    private void doBeforeSetcontentView() {
+    private void doBeforeSetContentView() {
         //设置昼夜主题
         initTheme();
-        // 把actvity放到application栈中管理
+        // 把activity放到application栈中管理
         AppManager.getAppManager().addActivity(this);
         // 无标题
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
+//        requestWindowFeature(Window.FEATURE_NO_TITLE);
         // 设置竖屏
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         // 默认着色状态栏
-        SetStatusBarColor();
+//        SetTranslanteBar();
 
     }
+
     /*********************子类实现*****************************/
     //获取布局文件
     public abstract int getLayoutId();
+
     //简单页面无需mvp就不用管此方法即可,完美兼容各种实际场景的变通
     public abstract void initPresenter();
+
     //初始化view
     public abstract void initView();
+
+    //获取 bundle 数据
+    public void initData(Bundle extras) {
+
+    }
 
 
     /**
@@ -74,25 +133,27 @@ public abstract class BaseActivity<T extends BasePresenter> extends AppCompatAct
     private void initTheme() {
         ChangeModeController.setTheme(this, R.style.DayTheme, R.style.NightTheme);
     }
+
     /**
      * 着色状态栏（4.4以上系统有效）
      */
-    protected void SetStatusBarColor(){
-        StatusBarCompat.setStatusBarColor(this, ContextCompat.getColor(this,R.color.white));
+    protected void SetStatusBarColor() {
+        StatusBarCompat.setStatusBarColor(this, ContextCompat.getColor(this, R.color.white));
     }
+
     /**
      * 着色状态栏（4.4以上系统有效）
      */
-    protected void SetStatusBarColor(int color){
-        StatusBarCompat.setStatusBarColor(this,color);
+    protected void SetStatusBarColor(int color) {
+        StatusBarCompat.setStatusBarColor(this, color);
     }
+
     /**
      * 沉浸状态栏（4.4以上系统有效）
      */
-    protected void SetTranslanteBar(){
+    protected void SetTranslanteBar() {
         StatusBarCompat.translucentStatusBar(this);
     }
-
 
 
     /**
@@ -184,28 +245,33 @@ public abstract class BaseActivity<T extends BasePresenter> extends AppCompatAct
     public void showLongToast(String text) {
         ToastUitl.showLong(text);
     }
+
     /**
      * 带图片的toast
+     *
      * @param text
      * @param res
      */
-    public void showToastWithImg(String text,int res) {
-        ToastUitl.showToastWithImg(text,res);
+    public void showToastWithImg(String text, int res) {
+        ToastUitl.showToastWithImg(text, res);
     }
+
     /**
      * 网络访问错误提醒
      */
     public void showNetErrorTip() {
-        ToastUitl.showToastWithImg(getText(R.string.net_error).toString(),R.drawable.ic_wifi_off);
+        ToastUitl.showToastWithImg(getText(R.string.net_error).toString(), R.drawable.ic_wifi_off);
     }
+
     public void showNetErrorTip(String error) {
-        ToastUitl.showToastWithImg(error,R.drawable.ic_wifi_off);
+        ToastUitl.showToastWithImg(error, R.drawable.ic_wifi_off);
     }
+
     @Override
     protected void onResume() {
         super.onResume();
         //debug版本不统计crash
-        if(!BuildConfig.LOG_DEBUG) {
+        if (!BuildConfig.LOG_DEBUG) {
             //友盟统计
             MobclickAgent.onResume(this);
         }
@@ -215,7 +281,7 @@ public abstract class BaseActivity<T extends BasePresenter> extends AppCompatAct
     protected void onPause() {
         super.onPause();
         //debug版本不统计crash
-        if(!BuildConfig.LOG_DEBUG) {
+        if (!BuildConfig.LOG_DEBUG) {
             //友盟统计
             MobclickAgent.onPause(this);
         }
@@ -228,7 +294,7 @@ public abstract class BaseActivity<T extends BasePresenter> extends AppCompatAct
         if (mPresenter != null)
             mPresenter.onDestroy();
         mRxManager.clear();
-        ButterKnife.unbind(this);
+        mUnbinder.unbind();
         AppManager.getAppManager().finishActivity(this);
     }
 }

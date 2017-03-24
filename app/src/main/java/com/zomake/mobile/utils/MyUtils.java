@@ -21,7 +21,11 @@ import android.support.design.widget.TabLayout;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.jaydenxiao.common.baseapp.BaseApp;
+import com.jaydenxiao.common.exception.ExceptionEngine;
 import com.zomake.mobile.app.BaseApplication;
+
+import java.lang.reflect.Field;
 
 /**
  * @author 咖枯
@@ -39,6 +43,7 @@ public class MyUtils {
             tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
         }
     }
+
     private static int calculateTabWidth(TabLayout tabLayout) {
         int tabWidth = 0;
         for (int i = 0; i < tabLayout.getChildCount(); i++) {
@@ -48,10 +53,43 @@ public class MyUtils {
         }
         return tabWidth;
     }
+
     public static int getScreenWith() {
         return BaseApplication.getAppContext().getResources().getDisplayMetrics().widthPixels;
     }
+
+    public static int getScreenHeight() {
+        return BaseApplication.getAppContext().getResources().getDisplayMetrics().heightPixels;
+    }
+
     public static View getRootView(Activity context) {
         return ((ViewGroup) context.findViewById(android.R.id.content)).getChildAt(0);
+    }
+
+    public static int dip2px(float dipValue) {
+        final float scale = BaseApplication.getAppResources().getDisplayMetrics().density;
+        return (int) (dipValue * scale + 0.5f);
+    }
+
+    public static boolean existsField(Class clz, String fieldName) {
+        try {
+            return clz.getDeclaredField(fieldName) != null;
+        } catch (Exception ignored) {
+        }
+        return clz != Object.class && existsField(clz.getSuperclass(), fieldName);
+    }
+
+    public static Object getValueByFieldName(Object obj, String fieldName) {
+        try {
+            if (obj.getClass().getDeclaredField(fieldName) == null) return new Object();
+
+            Field field = obj.getClass().getDeclaredField(fieldName);
+            field.setAccessible(true);
+
+            return field.get(obj);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return new Object();
     }
 }

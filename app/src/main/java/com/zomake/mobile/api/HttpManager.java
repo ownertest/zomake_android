@@ -18,6 +18,7 @@ import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 import rx.Observable;
+import rx.Subscription;
 
 public class HttpManager {
     private OkHttpClient client;
@@ -115,14 +116,14 @@ public class HttpManager {
         return retrofit;
     }
 
-    public void toSubscribe(Observable ob, final RxSubscriber subscriber) {
+    public Subscription toSubscribe(Observable ob, final RxSubscriber subscriber) {
         //数据预处理
         //数据预处理
         Observable observable = ob.compose(new CommonTransformer())
                 .doOnSubscribe(() -> {
 
                 });
-        RetrofitCache.load("cache_default", observable, false, true).subscribe(subscriber);
+        return RetrofitCache.load("cache_default", observable, false, true).subscribe(subscriber);
     }
 
 }

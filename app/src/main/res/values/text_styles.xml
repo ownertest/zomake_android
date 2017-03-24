@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="black_13sp">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">13sp</item>
+    </style>
+
+    <style name="black_15sp">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">15sp</item>
+    </style>
+
+    <style name="black_18sp">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="blue_13sp">
+        <item name="android:textColor">@color/blue</item>
+        <item name="android:textSize">13sp</item>
+    </style>
+
+    <style name="blue_18sp">
+        <item name="android:textColor">@color/blue</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="role_right_gray_12sp">
+        <item name="android:textColor">@color/role_right_gray</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="role_right_gray_13sp">
+        <item name="android:textColor">@color/role_right_gray</item>
+        <item name="android:textSize">13sp</item>
+    </style>
+
+    <style name="role_right_gray_14sp">
+        <item name="android:textColor">@color/role_right_gray</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+</resources>

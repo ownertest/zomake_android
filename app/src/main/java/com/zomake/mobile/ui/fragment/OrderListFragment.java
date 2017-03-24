@@ -20,7 +20,7 @@ import com.zomake.mobile.bean.MainCatalogBean;
 import com.zomake.mobile.contract.BaseContract;
 import com.zomake.mobile.ui.Presenter.MainCatalogPresenter;
 
-import butterknife.Bind;
+import butterknife.BindView;
 
 /**
  * Created by Ryan on 17/1/19.

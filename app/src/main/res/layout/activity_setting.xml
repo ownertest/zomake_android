@@ -52,7 +52,7 @@
             android:textSize="10sp"
             android:layout_marginLeft="16dp"
         />
-        <com.zomake.mobile.widget.FontTextView
+        <com.jaydenxiao.common.commonwidget.FontTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -113,7 +113,7 @@
             android:layout_marginLeft="16dp"
         />
 
-        <com.zomake.mobile.widget.FontTextView
+        <com.jaydenxiao.common.commonwidget.FontTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"

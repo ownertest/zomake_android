@@ -2,49 +2,43 @@ package com.zomake.mobile.ui.fragment;
 
 import android.content.Intent;
 import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.GridLayout;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 
-import com.bumptech.glide.Glide;
 import com.jaydenxiao.common.base.BaseFragment;
 import com.jaydenxiao.common.irecyclerview.IRecyclerView;
 import com.jaydenxiao.common.irecyclerview.universaladapter.ViewHolderHelper;
 import com.jaydenxiao.common.irecyclerview.universaladapter.recyclerview.CommonRecycleViewAdapter;
 import com.jaydenxiao.common.irecyclerview.universaladapter.recyclerview.OnItemClickListener;
 import com.zomake.mobile.R;
-import com.zomake.mobile.bean.MainCatalogBean;
-import com.zomake.mobile.ui.Presenter.MainShopPresenter;
 import com.zomake.mobile.ui.activity.AddressManageActivity;
 import com.zomake.mobile.ui.activity.CarActivity;
+import com.zomake.mobile.ui.activity.CatalogProductListActivity;
 import com.zomake.mobile.ui.activity.FavoriteActivity;
 import com.zomake.mobile.ui.activity.InboxActivity;
 import com.zomake.mobile.ui.activity.OrderActivity;
+import com.zomake.mobile.ui.activity.ProductDetailActivity;
 import com.zomake.mobile.ui.activity.SettingActivity;
 import com.zomake.mobile.ui.activity.WalletActivity;
-import com.zomake.mobile.widget.FontTextView;
+import com.jaydenxiao.common.commonwidget.FontTextView;
 import com.zomake.mobile.widget.SpacesItemDecoration;
 
 import java.util.Arrays;
-import butterknife.Bind;
+import butterknife.BindView;
 
 
 
 public class MyFragment extends BaseFragment implements View.OnClickListener{
 
-    @Bind(R.id.user_center_recycler)
+    @BindView(R.id.user_center_recycler)
     IRecyclerView recyclerView;
-    @Bind(R.id.order)
+    @BindView(R.id.order)
     LinearLayout ll_order;
-    @Bind(R.id.car)
+    @BindView(R.id.car)
     LinearLayout ll_car;
-    @Bind(R.id.user_center_set)
+    @BindView(R.id.user_center_set)
     FontTextView ft_set;
 
     private String[] iconIds = {"\uEA3B", "\ue794", "\ue7ac", "\ueac9", "\ue6df", "\ue6a4"};
@@ -90,13 +84,18 @@ public class MyFragment extends BaseFragment implements View.OnClickListener{
                     Intent intent = new Intent(getActivity(), AddressManageActivity.class);
                     startActivity(intent);
                 } else if (position == 4) {
-                    Intent intent = new Intent(getActivity(), CarActivity.class);
+//                    Intent intent = new Intent(getActivity(), CarActivity.class);
+                    Intent intent = new Intent(getActivity(), ProductDetailActivity.class);
                     startActivity(intent);
                 } else if (position == 5) {
                     Intent intent = new Intent(getActivity(), InboxActivity.class);
                     startActivity(intent);
                 } else if (position == 6) {
-                    Intent intent = new Intent(getActivity(), FavoriteActivity.class);
+//                    Intent intent = new Intent(getActivity(), FavoriteActivity.class);
+                    Intent intent = new Intent(getActivity(), CatalogProductListActivity.class);
+                    intent.putExtra("catalogId", "5836c796d939c40001dc842c");
+                    intent.putExtra("catalogName", "手机壳");
+                    intent.putExtra("parentName", "数码");
                     startActivity(intent);
                 }
             }

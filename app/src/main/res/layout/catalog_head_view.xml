@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:id="@+id/catalog_list_head_root"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:background="@drawable/line"
+              android:orientation="horizontal">
+
+    <CheckedTextView
+        android:id="@+id/tv_newest"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp"
+        android:text="最新"
+        android:textAlignment="center"
+        android:textColor="@drawable/text_color_checked"/>
+
+    <CheckedTextView
+        android:id="@+id/tv_hottest"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp"
+        android:text="人气"
+        android:textAlignment="center"
+        android:textColor="@drawable/text_color_checked"/>
+
+    <CheckedTextView
+        android:id="@+id/tv_price_sort"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp"
+        android:text="价格"
+        android:textAlignment="center"
+        android:textColor="@drawable/text_color_checked"/>
+
+    <FrameLayout
+        android:id="@+id/btn_layout_switch"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp">
+
+        <ImageView
+            android:id="@+id/switch_img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/product_list_list_btn"
+            android:layout_gravity="center"/>
+    </FrameLayout>
+
+</LinearLayout>

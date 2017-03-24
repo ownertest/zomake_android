@@ -25,11 +25,11 @@ import com.zomake.mobile.ui.fragment.ShopFragment;
 
 import java.util.ArrayList;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import rx.functions.Action1;
 
 public class MainActivity extends BaseActivity {
-    @Bind(R.id.tab_layout)
+    @BindView(R.id.tab_layout)
     CommonTabLayout tabLayout;
     private String[] mTitles = {"商店", "定制", "我的"};
     private int[] mIconUnselectIds = {
@@ -58,6 +58,11 @@ public class MainActivity extends BaseActivity {
     @Override
     public int getLayoutId() {
         return R.layout.activity_main;
+    }
+
+    @Override
+    protected boolean isShowTitleBar() {
+        return false;
     }
 
     @Override

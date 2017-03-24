@@ -9,7 +9,7 @@ import android.widget.ImageView;
 import com.jaydenxiao.common.base.BaseActivity;
 import com.zomake.mobile.R;
 
-import butterknife.Bind;
+import butterknife.BindView;
 
 /**
  * des:启动页
@@ -17,8 +17,9 @@ import butterknife.Bind;
  * on 2016.09.15:16
  */
 public class SplashActivity extends BaseActivity {
-    @Bind(R.id.iv_logo)
+    @BindView(R.id.iv_logo)
     ImageView ivLogo;
+
     @Override
     public int getLayoutId() {
         return R.layout.act_splash;
@@ -30,10 +31,15 @@ public class SplashActivity extends BaseActivity {
     }
 
     @Override
+    protected boolean isShowTitleBar() {
+        return false;
+    }
+
+    @Override
     public void initView() {
         SetTranslanteBar();
         PropertyValuesHolder alpha = PropertyValuesHolder.ofFloat("alpha", 0.0f, 1f);
-        ObjectAnimator objectAnimator= ObjectAnimator.ofPropertyValuesHolder(ivLogo, alpha);
+        ObjectAnimator objectAnimator = ObjectAnimator.ofPropertyValuesHolder(ivLogo, alpha);
         objectAnimator.setInterpolator(new AccelerateInterpolator());
         objectAnimator.setDuration(2000);
         objectAnimator.addListener(new Animator.AnimatorListener() {

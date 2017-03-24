@@ -22,12 +22,12 @@ import com.zomake.mobile.widget.SpacesItemDecoration;
 
 import java.util.Arrays;
 
-import butterknife.Bind;
+import butterknife.BindView;
 
 
 public class GoodsFragment extends BaseFragment  {
 
-    @Bind(R.id.tv_recyclerView)
+    @BindView(R.id.tv_recyclerView)
     IRecyclerView recyclerView;
     private CommonRecycleViewAdapter<String> adapter;
 
