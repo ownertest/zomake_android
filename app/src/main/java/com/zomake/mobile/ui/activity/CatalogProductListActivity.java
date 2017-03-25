@@ -1,6 +1,8 @@
 package com.zomake.mobile.ui.activity;
 
 import android.os.Bundle;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -10,24 +12,33 @@ import android.widget.CheckedTextView;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.jaydenxiao.common.base.BaseActivity;
+import com.jaydenxiao.common.commonutils.CollectionUtils;
 import com.jaydenxiao.common.commonutils.ImageLoaderUtils;
-import com.jaydenxiao.common.commonutils.LogUtils;
 import com.jaydenxiao.common.commonwidget.NormalTitleBar;
 import com.jaydenxiao.common.irecyclerview.IRecyclerView;
 import com.jaydenxiao.common.irecyclerview.universaladapter.ViewHolderHelper;
 import com.jaydenxiao.common.irecyclerview.universaladapter.recyclerview.CommonRecycleViewAdapter;
+import com.zhy.view.flowlayout.FlowLayout;
+import com.zhy.view.flowlayout.TagAdapter;
+import com.zhy.view.flowlayout.TagFlowLayout;
 import com.zomake.mobile.R;
+import com.zomake.mobile.bean.CatalogFilterBean;
 import com.zomake.mobile.bean.CatalogProductListBean.DataEntity.ProductArrEntity;
 import com.zomake.mobile.contract.BaseContract;
 import com.zomake.mobile.ui.Presenter.CatalogListPresenter;
 import com.zomake.mobile.utils.MyUtils;
 
+import java.util.HashSet;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+import rx.Observable;
+import rx.functions.Action1;
+import rx.functions.Func1;
 
 /**
  * Created by wojiushiwn on 2017/3/23.
@@ -38,22 +49,10 @@ public class CatalogProductListActivity extends BaseActivity<CatalogListPresente
         implements
         BaseContract.IModelListView {
 
-    private enum Sort {
-        DEFAULT(R.drawable.price_sort_default), DESC(R.drawable.price_sort_desc), ASC(R.drawable.price_sort_asc);
-
-        private int sortImg;
-
-        Sort(int sortImg) {
-            this.sortImg = sortImg;
-        }
-
-        public int getSortImg() {
-            return sortImg;
-        }
-    }
-
     private static final int MAX_DIST = MyUtils.dip2px(30);
 
+    @BindView(R.id.drawer_root)
+    DrawerLayout mDrawerRoot;
     @BindView(R.id.recyclerView)
     IRecyclerView mRecyclerView;
     @BindView(R.id.title_bar)
@@ -70,18 +69,53 @@ public class CatalogProductListActivity extends BaseActivity<CatalogListPresente
     FrameLayout mBtnLayoutSwitch;
     @BindView(R.id.tab_button_layout)
     LinearLayout mStickyHeaderView;
+    @BindView(R.id.bottom_buttons)
+    LinearLayout mBottomButtons;
+
+    @BindView(R.id.city_root)
+    View mCityRoot;
+    @BindView(R.id.good_root)
+    View mGoodRoot;
+    @BindView(R.id.style_root)
+    View mStyleRoot;
+    @BindView(R.id.limit_root)
+    View mLimitRoot;
+
     private String catalogId;
     private CommonRecycleViewAdapter<ProductArrEntity> mLinearAdapter;
     private CommonRecycleViewAdapter<ProductArrEntity> mGridAdapter;
     private LinearLayoutManager mLinearLayoutManager;
     private GridLayoutManager mGridLayoutManager;
     private CheckedTextView mStickyTvPriceSort;
+    private ImageView switchImg;
+
+    TextView mCityTypeName;
+    TagFlowLayout mCityTagFlowLayout;
+    TextView mGoodTypeName;
+    TagFlowLayout mGoodTagFlowLayout;
+    TextView mStyleTypeName;
+    TagFlowLayout mStyleTagFlowLayout;
+    TextView mLimitTypeName;
+    TagFlowLayout mLimitTagFlowLayout;
 
     boolean isProductViewAsList = false;
-    private ImageView switchImg;
     private int totalChange;
 
     private Sort sortEnum = Sort.DESC;
+
+    @OnClick(R.id.btn_commit)
+    public void commitSortClick() {
+        mDrawerRoot.closeDrawers();
+    }
+
+    @OnClick(R.id.btn_reset)
+    public void resetSortClick() {
+        mCityTagFlowLayout.getAdapter().setSelectedList(new HashSet<>());
+        mGoodTagFlowLayout.getAdapter().setSelectedList(new HashSet<>());
+        mStyleTagFlowLayout.getAdapter().setSelectedList(new HashSet<>());
+        mLimitTagFlowLayout.getAdapter().setSelectedList(new HashSet<>());
+        mPresenter.resetTag();
+    }
 
     @OnClick(R.id.btn_layout_switch)
     public void switchLayout() {
@@ -132,6 +166,7 @@ public class CatalogProductListActivity extends BaseActivity<CatalogListPresente
     @Override
     public void initView() {
 
+        initRightFilterDialog();
         mLinearLayoutManager = new LinearLayoutManager(this);
         mGridLayoutManager = new GridLayoutManager(this, 2);
         mRecyclerView.setLayoutManager(isProductViewAsList ? mLinearLayoutManager : mGridLayoutManager);
@@ -182,6 +217,7 @@ public class CatalogProductListActivity extends BaseActivity<CatalogListPresente
         };
 
         mRecyclerView.setAdapter(isProductViewAsList ? mLinearAdapter : mGridAdapter);
+        mPresenter.getCatalogProductList(catalogId);
         mPresenter.getCatalogList(catalogId);
     }
 
@@ -193,6 +229,16 @@ public class CatalogProductListActivity extends BaseActivity<CatalogListPresente
         getTitleBar().setTitleText(catalogName);
         getTitleBar().setSecTvLeft(parentName);
         getTitleBar().getTvSecLeft().setBackgroundResource(R.drawable.text_border_1);
+        getTitleBar().setRightImagSrc(R.drawable.filter_property);
+        getTitleBar().setOnRightImagListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!mDrawerRoot.isDrawerOpen(GravityCompat.END))
+                    mDrawerRoot.openDrawer(GravityCompat.END);
+                else
+                    mDrawerRoot.closeDrawer(GravityCompat.END);
+            }
+        });
     }
 
     @Override
@@ -216,4 +262,74 @@ public class CatalogProductListActivity extends BaseActivity<CatalogListPresente
         mGridAdapter.addAll(productArrEntities);
     }
 
+    @Override
+    public void showCatalogList(List<CatalogFilterBean> catalogBeanList) {
+        mRxManager.add(Observable.from(catalogBeanList)
+                .filter(catalogFilterBean -> !CollectionUtils.isNullOrEmpty(catalogBeanList))
+                .subscribe(bean -> {
+                    TextView textView = bean.getIndex() == 0 ?
+                            mCityTypeName : bean.getIndex() == 1 ?
+                            mGoodTypeName : bean.getIndex() == 2 ?
+                            mStyleTypeName : bean.getIndex() == 3 ?
+                            mLimitTypeName : null;
+                    if (textView != null)
+                        textView.setText(bean.getSectionTitle());
+
+                    TagFlowLayout tagFlowLayout = bean.getIndex() == 0 ?
+                            mCityTagFlowLayout : bean.getIndex() == 1 ?
+                            mGoodTagFlowLayout : bean.getIndex() == 2 ?
+                            mStyleTagFlowLayout : bean.getIndex() == 3 ?
+                            mLimitTagFlowLayout : null;
+
+                    if (tagFlowLayout != null) {
+                        tagFlowLayout.setAdapter(getTagAdapter(bean.getValues()));
+                        tagFlowLayout.setOnSelectListener(getSelectListener(bean.getIndex()));
+                    }
+                }));
+    }
+
+    private TagFlowLayout.OnSelectListener getSelectListener(int type) {
+        return selectPosSet -> {
+            if (selectPosSet.iterator().hasNext()) {
+                mPresenter.selectTag(type, selectPosSet.iterator().next());
+            }
+        };
+    }
+
+    private TagAdapter getTagAdapter(List<CatalogFilterBean.ValueBean> list) {
+
+        return new TagAdapter<CatalogFilterBean.ValueBean>(list) {
+            @Override
+            public View getView(FlowLayout parent, int position, CatalogFilterBean.ValueBean s) {
+                TextView textView = (TextView) LayoutInflater.from(CatalogProductListActivity.this).inflate(R.layout.good_itme_view, parent, false);
+                textView.setText(s.getValue());
+                return textView;
+            }
+        };
+    }
+
+    private void initRightFilterDialog() {
+        mCityTypeName = (TextView) mCityRoot.findViewById(R.id.good_type_name);
+        mCityTagFlowLayout = (TagFlowLayout) mCityRoot.findViewById(R.id.good_list);
+        mGoodTypeName = (TextView) mGoodRoot.findViewById(R.id.good_type_name);
+        mGoodTagFlowLayout = (TagFlowLayout) mGoodRoot.findViewById(R.id.good_list);
+        mStyleTypeName = (TextView) mStyleRoot.findViewById(R.id.good_type_name);
+        mStyleTagFlowLayout = (TagFlowLayout) mStyleRoot.findViewById(R.id.good_list);
+        mLimitTypeName = (TextView) mLimitRoot.findViewById(R.id.good_type_name);
+        mLimitTagFlowLayout = (TagFlowLayout) mLimitRoot.findViewById(R.id.good_list);
+    }
+
+    private enum Sort {
+        DEFAULT(R.drawable.price_sort_default), DESC(R.drawable.price_sort_desc), ASC(R.drawable.price_sort_asc);
+
+        private int sortImg;
+
+        Sort(int sortImg) {
+            this.sortImg = sortImg;
+        }
+
+        public int getSortImg() {
+            return sortImg;
+        }
+    }
 }

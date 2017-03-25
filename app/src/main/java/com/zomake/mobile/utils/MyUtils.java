@@ -17,14 +17,19 @@
 package com.zomake.mobile.utils;
 
 import android.app.Activity;
+import android.content.Context;
 import android.support.design.widget.TabLayout;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.jaydenxiao.common.baseapp.BaseApp;
 import com.jaydenxiao.common.exception.ExceptionEngine;
+import com.zomake.mobile.R;
 import com.zomake.mobile.app.BaseApplication;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.lang.reflect.Field;
 
 /**
@@ -91,5 +96,35 @@ public class MyUtils {
             e.printStackTrace();
         }
         return new Object();
+    }
+
+    public static String getFromRaw(Context context, int rawRes) {
+        InputStreamReader inputReader = null;
+        BufferedReader bufReader = null;
+        try {
+            inputReader = new InputStreamReader(context.getResources().openRawResource(rawRes));
+            bufReader = new BufferedReader(inputReader);
+            String line = "";
+            StringBuilder result = new StringBuilder();
+            while ((line = bufReader.readLine()) != null)
+                result.append(line);
+            return result.toString();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (inputReader != null) {
+                    inputReader.close();
+                    inputReader = null;
+                }
+                if (bufReader != null) {
+                    bufReader.close();
+                    bufReader = null;
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        return "";
     }
 }

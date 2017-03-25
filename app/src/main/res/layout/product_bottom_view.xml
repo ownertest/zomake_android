@@ -3,8 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/white"
-    android:orientation="vertical">
+    android:background="@color/white">
 
     <com.jaydenxiao.common.irecyclerview.IRecyclerView
         xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -53,10 +52,10 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/tv_commit"
             android:gravity="center"
+            android:paddingBottom="5dp"
             android:text="共计1000元"
             android:textColor="@color/white"
-            android:textSize="14sp"
-            android:paddingBottom="5dp"/>
+            android:textSize="14sp"/>
 
     </RelativeLayout>
 

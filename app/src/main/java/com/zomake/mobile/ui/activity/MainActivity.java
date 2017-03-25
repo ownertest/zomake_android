@@ -13,15 +13,19 @@ import android.view.ViewGroup;
 import com.flyco.tablayout.CommonTabLayout;
 import com.flyco.tablayout.listener.CustomTabEntity;
 import com.flyco.tablayout.listener.OnTabSelectListener;
+import com.google.gson.Gson;
 import com.jaydenxiao.common.base.BaseActivity;
+import com.jaydenxiao.common.commonutils.JsonUtils;
 import com.jaydenxiao.common.commonutils.LogUtils;
 import com.jaydenxiao.common.daynightmodeutils.ChangeModeController;
 import com.zomake.mobile.R;
 import com.zomake.mobile.app.AppConstant;
+import com.zomake.mobile.bean.ChinaCityBean;
 import com.zomake.mobile.bean.TabEntity;
 import com.zomake.mobile.ui.fragment.CustomFragment;
 import com.zomake.mobile.ui.fragment.MyFragment;
 import com.zomake.mobile.ui.fragment.ShopFragment;
+import com.zomake.mobile.utils.MyUtils;
 
 import java.util.ArrayList;
 
@@ -91,6 +95,7 @@ public class MainActivity extends BaseActivity {
                 startAnimation(hideOrShow);
             }
         });
+
     }
 
     /**

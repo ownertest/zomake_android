@@ -5,7 +5,13 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.support.multidex.MultiDex;
 
+import com.google.gson.Gson;
 import com.jaydenxiao.common.commonutils.LogUtils;
+import com.zomake.mobile.utils.RealmHelper;
+
+import io.realm.Realm;
+import io.realm.RealmConfiguration;
+import io.realm.rx.RealmObservableFactory;
 
 /**
  * APPLICATION
@@ -20,14 +26,17 @@ public class BaseApplication extends Application {
         baseApplication = this;
 
         LogUtils.logInit(true);
+        initRealm();
     }
 
     public static Context getAppContext() {
         return baseApplication;
     }
+
     public static Resources getAppResources() {
         return baseApplication.getResources();
     }
+
     @Override
     public void onTerminate() {
         super.onTerminate();
@@ -35,6 +44,7 @@ public class BaseApplication extends Application {
 
     /**
      * 分包
+     *
      * @param base
      */
     @Override
@@ -42,5 +52,16 @@ public class BaseApplication extends Application {
         super.attachBaseContext(base);
         MultiDex.install(this);
     }
+
+    private void initRealm() {
+        RealmConfiguration realmConfiguration = new RealmConfiguration.Builder(this)
+                .name(RealmHelper.DB_NAME)
+                .schemaVersion(1)
+                .rxFactory(new RealmObservableFactory())
+                .deleteRealmIfMigrationNeeded()
+                .build();
+        Realm.setDefaultConfiguration(realmConfiguration);
+    }
+
 
 }

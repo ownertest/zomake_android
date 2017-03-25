@@ -1,5 +1,6 @@
 apply plugin: 'com.android.library'
 apply plugin: 'me.tatarka.retrolambda'
+apply plugin: 'realm-android'
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
@@ -64,6 +65,7 @@ dependencies {
     compile 'cn.hugeterry.updatefun:updatefun:1.8.6'//fire.im自动更新
     compile 'com.umeng.analytics:analytics:latest.integration'//友盟统计
     compile 'com.orhanobut:hawk:2.0.0-Alpha'
+    compile "com.mikepenz:crossfadedrawerlayout:1.0.0@aar"
 }
 
 

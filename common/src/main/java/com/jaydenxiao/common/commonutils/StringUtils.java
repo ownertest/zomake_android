@@ -11,10 +11,17 @@ public class StringUtils {
         if (array == null) {
             return null;
         }
-        return join(array, separator, 0, array.length);
+        return join(array, separator, true);
     }
 
-    public static String join(final Object[] array, String separator, final int startIndex, final int endIndex) {
+    public static String join(final Object[] array, final String separator, final boolean isAllowRepeat) {
+        if (array == null) {
+            return null;
+        }
+        return join(array, separator, 0, array.length, isAllowRepeat);
+    }
+
+    public static String join(final Object[] array, String separator, final int startIndex, final int endIndex, final boolean isAllowRepeat) {
         if (array == null) {
             return null;
         }
@@ -32,6 +39,10 @@ public class StringUtils {
         final StringBuilder buf = new StringBuilder(noOfItems * 16);
 
         for (int i = startIndex; i < endIndex; i++) {
+            if (!isAllowRepeat && i > startIndex
+                    && array[i] != null && array[i - 1] != null &&
+                    array[i].equals(array[i - 1]))
+                break;
             if (i > startIndex) {
                 buf.append(separator);
             }

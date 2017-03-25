@@ -2,9 +2,11 @@ package com.zomake.mobile.api;
 
 import com.jaydenxiao.common.base.BaseHttpResult;
 import com.zomake.mobile.bean.AdvertImageBean;
+import com.zomake.mobile.bean.CatalogBean;
 import com.zomake.mobile.bean.CatalogProductListBean;
 import com.zomake.mobile.bean.CatalogProductsBean;
 import com.zomake.mobile.bean.MainCatalogBean;
+import com.zomake.mobile.bean.ModelBean;
 import com.zomake.mobile.bean.ProductDetailBean;
 
 import retrofit2.http.GET;
@@ -37,4 +39,10 @@ public interface ApiService {
 
     @GET("shop/detail")
     Observable<BaseHttpResult<ProductDetailBean>> getShopDetail(@Query("shopId") String shopId);
+
+    @GET("catalog/products")
+    Observable<BaseHttpResult<CatalogBean.DataEntity>> getCatalogList(@Query("parentId") String parentId);
+
+    @GET("models")
+    Observable<BaseHttpResult<ModelBean>> getModelList(@Query("catalogId") String catalogId);
 }

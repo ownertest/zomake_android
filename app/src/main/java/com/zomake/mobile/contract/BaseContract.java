@@ -3,6 +3,8 @@ package com.zomake.mobile.contract;
 import com.jaydenxiao.common.base.BasePresenter;
 import com.jaydenxiao.common.base.BaseView;
 import com.zomake.mobile.bean.AdvertImageBean;
+import com.zomake.mobile.bean.CatalogBean;
+import com.zomake.mobile.bean.CatalogFilterBean;
 import com.zomake.mobile.bean.CatalogProductsBean;
 import com.zomake.mobile.bean.MainCatalogBean;
 import com.zomake.mobile.bean.CatalogProductListBean.DataEntity.ProductArrEntity;
@@ -60,12 +62,21 @@ public interface BaseContract {
 
     abstract class ACatalogListPresenter extends BasePresenter<IModelListView> {
 
-        public abstract void getCatalogList(String catalogId);
+        public abstract void getCatalogProductList(String catalogId);
+
+        public abstract void getCatalogList(String parentId);
+
+        public abstract void selectTag(int index, int childIndex);
+
+        public abstract void resetTag();
+
     }
 
     interface IModelListView extends BaseView {
 
         void showProductList(List<ProductArrEntity> productArrEntities);
+
+        void showCatalogList(List<CatalogFilterBean> catalogBeanList);
 
     }
 
