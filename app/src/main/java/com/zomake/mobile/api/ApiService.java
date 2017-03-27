@@ -8,10 +8,15 @@ import com.zomake.mobile.bean.CatalogProductsBean;
 import com.zomake.mobile.bean.MainCatalogBean;
 import com.zomake.mobile.bean.ModelBean;
 import com.zomake.mobile.bean.ProductDetailBean;
+import com.zomake.mobile.bean.ShopDetailBean;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import retrofit2.http.GET;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
+import retrofit2.http.QueryMap;
 import rx.Observable;
 
 /**
@@ -20,7 +25,7 @@ import rx.Observable;
 
 public interface ApiService {
     @GET("catalog/all")
-    Observable<BaseHttpResult<MainCatalogBean>> getCatalogList();
+    Observable<BaseHttpResult<MainCatalogBean>> getCatalogList(@QueryMap Map<String, String> parameterMap);
 
     @GET("catalog/products")
     Observable<BaseHttpResult<CatalogProductsBean>> getProducts(@Query("parentId") String parentId);
@@ -32,13 +37,11 @@ public interface ApiService {
     Observable<BaseHttpResult<ProductDetailBean>> getProductDetail(@Query("eid") String eid);
 
     @GET("product/list")
-    Observable<BaseHttpResult<CatalogProductListBean>> getCatalogProductList(@Query("catalogIdArray") String catalogIdArray,
-                                                                             @Query("count") int count, @Query("limit") boolean limit,
-                                                                             @Query("sort") String sort, @Query("page") int page);
+    Observable<BaseHttpResult<CatalogProductListBean>> getCatalogProductList(@QueryMap Map<String, String> parameter);
 
 
     @GET("shop/detail")
-    Observable<BaseHttpResult<ProductDetailBean>> getShopDetail(@Query("shopId") String shopId);
+    Observable<BaseHttpResult<ShopDetailBean>> getShopDetail(@Query("shopId") String shopId);
 
     @GET("catalog/products")
     Observable<BaseHttpResult<CatalogBean.DataEntity>> getCatalogList(@Query("parentId") String parentId);

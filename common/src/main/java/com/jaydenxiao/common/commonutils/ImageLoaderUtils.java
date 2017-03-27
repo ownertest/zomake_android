@@ -20,6 +20,8 @@ import java.io.File;
  */
 public class ImageLoaderUtils {
 
+    public static final String DEFAULT_URL_HOST = "https://shop-cdn.zomake.com/";
+
     public static void display(Context context, ImageView imageView, String url, int placeholder, int error) {
         if (imageView == null) {
             throw new IllegalArgumentException("argument error");

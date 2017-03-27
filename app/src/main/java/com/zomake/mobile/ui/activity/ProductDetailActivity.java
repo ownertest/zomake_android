@@ -1,7 +1,11 @@
 package com.zomake.mobile.ui.activity;
 
+import android.content.Context;
+import android.content.Intent;
 import android.graphics.Paint;
+import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
+import android.text.TextUtils;
 import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,10 +19,8 @@ import android.widget.Toast;
 
 import com.jaydenxiao.common.base.BaseActivity;
 import com.jaydenxiao.common.commonutils.ImageLoaderUtils;
-import com.jaydenxiao.common.commonutils.LogUtils;
 import com.jaydenxiao.common.commonwidget.BottomDialog;
 import com.jaydenxiao.common.commonwidget.FontTextView;
-import com.jaydenxiao.common.commonwidget.OnDoubleClickListener;
 import com.jaydenxiao.common.irecyclerview.IRecyclerView;
 import com.jaydenxiao.common.irecyclerview.universaladapter.ViewHolderHelper;
 import com.jaydenxiao.common.irecyclerview.universaladapter.recyclerview.CommonRecycleViewAdapter;
@@ -36,7 +38,6 @@ import com.zomake.mobile.utils.MyUtils;
 import com.zomake.mobile.widget.CounterView.CounterView;
 import com.zomake.mobile.widget.CounterView.IChangeCountCallback;
 
-import java.util.List;
 import java.util.Set;
 
 import butterknife.BindView;
@@ -72,6 +73,8 @@ public class ProductDetailActivity extends BaseActivity<ProductDetailPresenter> 
     private int mSubPrice;
     private int mBasePrice;
     private RelativeLayout mBtnCommit;
+    private String mShopId;
+    private String eid;
 
 
     @Override
@@ -82,6 +85,15 @@ public class ProductDetailActivity extends BaseActivity<ProductDetailPresenter> 
     @Override
     public void initPresenter() {
         mPresenter.setVM(this);
+    }
+
+    @Override
+    public void initData(Bundle extras) {
+        super.initData(extras);
+
+        if (extras != null) {
+            eid = extras.getString("eid");
+        }
     }
 
     @Override
@@ -108,10 +120,9 @@ public class ProductDetailActivity extends BaseActivity<ProductDetailPresenter> 
         View mFooterShopInfoView = LayoutInflater.from(this).inflate(R.layout.product_footer_shop_info, null);
         mShopName = (TextView) mFooterShopInfoView.findViewById(R.id.shop_name);
         mShopInfo = (TextView) mFooterShopInfoView.findViewById(R.id.shop_info);
-        mFooterShopInfoView.setOnClickListener(new OnDoubleClickListener() {
-            @Override
-            protected void onDoubleClick(View v) {
-                Toast.makeText(v.getContext(), "店铺详情！！！", Toast.LENGTH_LONG).show();
+        mFooterShopInfoView.setOnClickListener(v -> {
+            if (!TextUtils.isEmpty(mShopId)) {
+                ShopInfoActivity.startActivity(mContext, mShopId);
             }
         });
         mRecyclerView.addFooterView(mFooterShopInfoView);
@@ -139,6 +150,8 @@ public class ProductDetailActivity extends BaseActivity<ProductDetailPresenter> 
     public void showProductDetail(ProductDetailBean productDetailBean) {
         if (productDetailBean == null || productDetailBean.getData() == null || productDetailBean.getData().getAttachment() == null)
             return;
+
+        mShopId = productDetailBean.getData().getShop_id();
 
         ImageLoaderUtils.displayIntoUseFitWidth(this, mProductCover, "https://shop-cdn.zomake.com/" + productDetailBean.getData().getAttachment().getImgArray().get(0));
         mProductName.setText(productDetailBean.getData().getName());
@@ -281,7 +294,7 @@ public class ProductDetailActivity extends BaseActivity<ProductDetailPresenter> 
         if (mBottomSheetDialog != null) {
             mTvCommit.setText(view.getId() == R.id.btn_buy ? "立即购买" : "加入购物车");
             mTvCommit.setTag(view.getId());
-            mBottomSheetDialog.showDialogForLoading();
+            mBottomSheetDialog.showDialog();
         }
     }
 
@@ -298,5 +311,11 @@ public class ProductDetailActivity extends BaseActivity<ProductDetailPresenter> 
             mBottomSheetDialog.dismiss();
             mBottomSheetDialog = null;
         }
+    }
+
+    public static void startActivity(Context context, String eid) {
+        Intent intent = new Intent(context, ProductDetailActivity.class);
+        intent.putExtra("eid", eid);
+        context.startActivity(intent);
     }
 }

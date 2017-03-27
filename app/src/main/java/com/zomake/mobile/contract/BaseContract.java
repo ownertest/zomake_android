@@ -3,13 +3,14 @@ package com.zomake.mobile.contract;
 import com.jaydenxiao.common.base.BasePresenter;
 import com.jaydenxiao.common.base.BaseView;
 import com.zomake.mobile.bean.AdvertImageBean;
-import com.zomake.mobile.bean.CatalogBean;
 import com.zomake.mobile.bean.CatalogFilterBean;
+import com.zomake.mobile.bean.CatalogProductListBean;
 import com.zomake.mobile.bean.CatalogProductsBean;
 import com.zomake.mobile.bean.MainCatalogBean;
 import com.zomake.mobile.bean.CatalogProductListBean.DataEntity.ProductArrEntity;
 import com.zomake.mobile.bean.ProductDetailBean;
 import com.zomake.mobile.bean.GoodAttrBean;
+import com.zomake.mobile.bean.ShopDetailBean;
 
 import java.util.List;
 
@@ -78,6 +79,26 @@ public interface BaseContract {
 
         void showCatalogList(List<CatalogFilterBean> catalogBeanList);
 
+    }
+
+    abstract class AShopInfoPresenter extends BasePresenter<IShopInfoView> {
+
+        public abstract void getProductList(String shopId);
+
+        public abstract void getProductListForCatalog(String catalogId, boolean isRefresh);
+
+        public abstract void getShopDetail(String shopId);
+
+        public abstract void getCatalogList(String shopId);
+    }
+
+    interface IShopInfoView extends BaseView {
+
+        void showShopDetail(ShopDetailBean bean);
+
+        void showProductList(CatalogProductListBean bean, boolean isRefresh);
+
+        void showCatalogList(MainCatalogBean bean);
     }
 
 }

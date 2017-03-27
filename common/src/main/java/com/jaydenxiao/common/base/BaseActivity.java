@@ -39,8 +39,8 @@ public abstract class BaseActivity<T extends BasePresenter> extends AppCompatAct
         mRxManager = new RxManager();
         doBeforeSetContentView();
         setContentView(getLayoutId());
-        initActionBar();
         mUnbinder = ButterKnife.bind(this);
+        initActionBar();
         mContext = this;
         mPresenter = TUtil.getT(this, 0);
         if (mPresenter != null) {
@@ -54,7 +54,7 @@ public abstract class BaseActivity<T extends BasePresenter> extends AppCompatAct
     /**
      * 初始化ActionBar
      */
-    private void initActionBar() {
+    public void initActionBar() {
         mCommonActionBar = LayoutInflater.from(this).inflate(
                 R.layout.base_title_bar, null);
         ActionBar mActionBar = getSupportActionBar();

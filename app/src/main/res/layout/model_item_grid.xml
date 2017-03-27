@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
-              android:background="@color/white"
+              android:background="@color/light_white"
               android:orientation="vertical">
 
     <com.jaydenxiao.common.commonwidget.SquareImageView
@@ -12,18 +12,20 @@
 
     <com.jaydenxiao.common.commonwidget.FontTextView
         android:id="@+id/product_name"
-        style="@style/black_15sp"
+        style="@style/black_13sp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:gravity="center"/>
+        android:gravity="center"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp"/>
 
 
     <com.jaydenxiao.common.commonwidget.FontTextView
         android:id="@+id/product_price"
-        style="@style/blue_18sp"
+        style="@style/blue_13sp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"/>
+        android:gravity="center"
+        android:paddingBottom="10dp"/>
 
 </LinearLayout>

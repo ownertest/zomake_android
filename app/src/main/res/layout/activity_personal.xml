@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             xmlns:app="http://schemas.android.com/apk/res-auto"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent">
+
+    <android.support.design.widget.CoordinatorLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="com.jaydenxiao.common.commonwidget.FlingBehavior">
+
+        <android.support.design.widget.AppBarLayout
+            android:id="@+id/app_bar_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent">
+
+
+            <android.support.design.widget.CollapsingToolbarLayout
+                android:id="@+id/collapsing_toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+                <RelativeLayout
+                    android:id="@+id/rl_header"
+                    android:layout_width="match_parent"
+                    android:layout_height="300dp"
+                    android:background="@android:color/transparent"
+                    app:layout_collapseMode="parallax">
+
+
+                    <ImageView
+                        android:id="@+id/iv_header_bg"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/default_start_image"/>
+
+
+                    <RelativeLayout
+                        android:id="@+id/rl_avatar"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:background="@color/app_white"
+                        app:layout_scrollFlags="scroll">
+
+                        <TextView
+                            android:id="@+id/tv_pi_name"
+                            style="@style/black_18sp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="10dp"
+                            android:paddingTop="40dp"
+                            android:text="name"/>
+
+                        <ImageView
+                            android:id="@+id/iv_city"
+                            android:layout_width="22dp"
+                            android:layout_height="22dp"
+                            android:layout_below="@id/tv_pi_name"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="10dp"
+                            android:src="@drawable/icon_cn"/>
+
+                        <TextView
+                            android:id="@+id/tv_info"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/iv_city"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="10dp"
+                            android:paddingBottom="20dp"
+                            android:text="暂无简介"
+                            android:textColor="@color/role_right_gray"/>
+                    </RelativeLayout>
+
+                    <ImageView
+                        android:id="@+id/iv_pi_header"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:layout_alignTop="@id/rl_avatar"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="-40dp"
+                        android:src="@drawable/store_avatar"/>
+
+                </RelativeLayout>
+
+
+                <android.support.v7.widget.Toolbar
+                    android:id="@+id/toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    android:layout_alignParentBottom="true"
+                    app:layout_collapseMode="pin"
+                    app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
+
+
+            </android.support.design.widget.CollapsingToolbarLayout>
+
+
+            <android.support.design.widget.TabLayout
+                android:id="@+id/tabs"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/line"
+                app:tabIndicatorColor="@color/app_tealish"
+                app:tabMaxWidth="60dp"
+                app:tabSelectedTextColor="@color/black"
+                app:tabTextColor="#666666"/>
+
+        </android.support.design.widget.AppBarLayout>
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/view_pager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+
+
+    </android.support.design.widget.CoordinatorLayout>
+
+    <FrameLayout
+        android:id="@+id/fl_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/transparent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize">
+
+            <com.jaydenxiao.common.commonwidget.FontTextView
+                android:id="@+id/iv_base_left"
+                android:layout_width="33dp"
+                android:layout_height="33dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="22dp"
+                android:background="@drawable/round_white"
+                android:gravity="center"
+                android:text="\uea6b"
+                android:textSize="16sp"/>
+
+
+            <ImageView
+                android:id="@+id/id_task_share_img"
+                android:layout_width="wrap_content"
+                android:layout_height="44dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center"
+                android:paddingRight="22dp"
+                android:src="@drawable/icon_share"/>
+
+
+        </RelativeLayout>
+
+
+    </FrameLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_gravity="bottom"
+        android:background="@color/white"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btn_catalog"
+            style="@style/role_right_gray_14sp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/gray"
+            android:text="商品分类"/>
+
+        <ImageView
+            android:id="@+id/btn_chat"
+            style="@style/role_right_gray_14sp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:background="@color/white"
+            android:src="@drawable/icon_community"/>
+
+        <Button
+            android:id="@+id/btn_fav"
+            style="@style/role_right_gray_14sp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/gray"
+            android:text="收藏"/>
+    </LinearLayout>
+
+
+</FrameLayout>

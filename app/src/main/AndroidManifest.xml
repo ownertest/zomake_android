@@ -47,6 +47,7 @@
         <activity android:name=".ui.activity.ProductDetailActivity">
         </activity>
         <activity android:name=".ui.activity.CatalogProductListActivity"/>
+        <activity android:name=".ui.activity.ShopInfoActivity"/>
     </application>
 
 </manifest>

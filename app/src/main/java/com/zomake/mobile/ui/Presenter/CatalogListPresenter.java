@@ -19,6 +19,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import rx.Observable;
@@ -38,8 +39,14 @@ public class CatalogListPresenter extends BaseContract.ACatalogListPresenter {
     @Override
     public void getCatalogProductList(String catalogId) {
         String ids = "[\"" + catalogId + "\"]";
+        Map<String, String> parameter = new HashMap<>();
+        parameter.put("catalogIdArray", ids);
+        parameter.put("count", "10");
+        parameter.put("limit", String.valueOf(false));
+        parameter.put("sort", "date");
+        parameter.put("page", "1");
         Observable ob = HttpManager.getInstance().getHttpService(ApiService.class)
-                .getCatalogProductList(ids, 10, false, "data", 1);
+                .getCatalogProductList(parameter);
         mRxManage.add(HttpManager.getInstance().toSubscribe(ob, new RxSubscriber<CatalogProductListBean>(mContext, false) {
 
             @Override

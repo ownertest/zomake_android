@@ -6,6 +6,7 @@ import com.zomake.mobile.api.HttpManager;
 import com.zomake.mobile.bean.MainCatalogBean;
 import com.zomake.mobile.contract.BaseContract;
 
+import java.util.HashMap;
 import java.util.List;
 
 import rx.Observable;
@@ -17,8 +18,8 @@ import rx.Observable;
 public class MainShopPresenter extends BaseContract.MainPresenter {
     @Override
     public void getMainChannels() {
-        Observable ob = HttpManager.getInstance().getHttpService(ApiService.class).getCatalogList();
-        HttpManager.getInstance().toSubscribe(ob, new RxSubscriber<MainCatalogBean>(mContext){
+        Observable ob = HttpManager.getInstance().getHttpService(ApiService.class).getCatalogList(new HashMap<>());
+        HttpManager.getInstance().toSubscribe(ob, new RxSubscriber<MainCatalogBean>(mContext) {
 
             @Override
             protected void _onNext(MainCatalogBean mainCatalogBeen) {

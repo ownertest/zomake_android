@@ -42,6 +42,9 @@
     <color name="toast_white">#ffffff</color>
     <color name="toast_stroke_gray">#99d4d4d4</color>
 
+    <color name="app_white">#ebebeb</color>
+    <color name="app_tealish">#36b8c6</color>
+
 
     <color name="alpha_05_white">#0DFFFFFF</color>
     <color name="alpha_10_white">#1AFFFFFF</color>

@@ -68,7 +68,7 @@ public class BottomDialog extends BottomSheetDialog {
         }
     }
 
-    public void showDialogForLoading() {
+    public void showDialog() {
         if (!isShowing())
             show();
     }

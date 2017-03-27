@@ -33,49 +33,4 @@
         android:layout_height="match_parent"
         android:layout_gravity="end"/>
 
-    <!--<RelativeLayout-->
-    <!--android:id="@+id/right_root"-->
-    <!--android:layout_width="200dp"-->
-    <!--android:layout_height="match_parent"-->
-    <!--android:layout_gravity="end">-->
-
-    <!--<com.jaydenxiao.common.irecyclerview.IRecyclerView-->
-    <!--xmlns:app="http://schemas.android.com/apk/res-auto"-->
-    <!--android:id="@+id/right_recyclerView"-->
-    <!--android:layout_width="wrap_content"-->
-    <!--android:layout_height="match_parent"-->
-    <!--android:layout_above="@+id/bottom_buttons"-->
-    <!--android:background="@color/white"-->
-    <!--app:loadMoreEnabled="false"-->
-    <!--app:refreshEnabled="false"/>-->
-
-    <!--<LinearLayout-->
-    <!--android:id="@+id/bottom_buttons"-->
-    <!--android:layout_width="wrap_content"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:layout_alignLeft="@id/right_recyclerView"-->
-    <!--android:layout_alignParentBottom="true"-->
-    <!--android:layout_alignRight="@id/right_recyclerView"-->
-    <!--android:orientation="horizontal">-->
-
-    <!--<Button-->
-    <!--android:layout_width="0dp"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:layout_weight="1"-->
-    <!--android:background="@color/role_right_gray"-->
-    <!--android:text="重置"-->
-    <!--android:textColor="@color/white"-->
-    <!--android:textSize="14sp"/>-->
-
-    <!--<Button-->
-    <!--android:layout_width="0dp"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:layout_weight="1"-->
-    <!--android:background="@color/role_yellow_gray"-->
-    <!--android:text="确定"-->
-    <!--android:textColor="@color/white"-->
-    <!--android:textSize="14sp"/>-->
-
-    <!--</LinearLayout>-->
-    <!--</RelativeLayout>-->
 </android.support.v4.widget.DrawerLayout>
