@@ -5,8 +5,9 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.support.multidex.MultiDex;
 
-import com.google.gson.Gson;
+import com.jaydenxiao.common.baseapp.BaseApp;
 import com.jaydenxiao.common.commonutils.LogUtils;
+import com.zomake.mobile.utils.UserInfoManager;
 import com.zomake.mobile.utils.RealmHelper;
 
 import io.realm.Realm;
@@ -27,10 +28,11 @@ public class BaseApplication extends Application {
 
         LogUtils.logInit(true);
         initRealm();
+        UserInfoManager.getInstance();
     }
 
     public static Context getAppContext() {
-        return baseApplication;
+        return baseApplication.getApplicationContext();
     }
 
     public static Resources getAppResources() {

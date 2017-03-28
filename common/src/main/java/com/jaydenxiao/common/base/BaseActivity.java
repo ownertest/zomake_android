@@ -10,6 +10,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.Window;
 
 import com.jaydenxiao.common.BuildConfig;
 import com.jaydenxiao.common.R;
@@ -102,8 +103,6 @@ public abstract class BaseActivity<T extends BasePresenter> extends AppCompatAct
         initTheme();
         // 把activity放到application栈中管理
         AppManager.getAppManager().addActivity(this);
-        // 无标题
-//        requestWindowFeature(Window.FEATURE_NO_TITLE);
         // 设置竖屏
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         // 默认着色状态栏
@@ -131,7 +130,9 @@ public abstract class BaseActivity<T extends BasePresenter> extends AppCompatAct
      * 设置主题
      */
     private void initTheme() {
-        ChangeModeController.setTheme(this, R.style.DayTheme, R.style.NightTheme);
+        int dayTheme = isShowTitleBar() ? R.style.DayForBarTheme : R.style.DayTheme;
+        int nightTheme = isShowTitleBar() ? R.style.NightForBarTheme : R.style.NightTheme;
+        ChangeModeController.setTheme(this, dayTheme, nightTheme);
     }
 
     /**

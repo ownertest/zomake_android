@@ -1,6 +1,9 @@
 package com.zomake.mobile.utils;
 
+import com.zomake.mobile.bean.UserInfoBean;
+
 import io.realm.Realm;
+import io.realm.RealmResults;
 
 /**
  * Created by wojiushiwn on 2017/3/24.
@@ -32,5 +35,27 @@ public class RealmHelper {
         if (mRealm == null || mRealm.isClosed())
             mRealm = Realm.getDefaultInstance();
         return mRealm;
+    }
+
+    void insertUserInfo(UserInfoBean userInfoBean) {
+        getRealm().beginTransaction();
+        getRealm().copyToRealmOrUpdate(userInfoBean);
+        getRealm().commitTransaction();
+    }
+
+    UserInfoBean getUserInfo() {
+        //使用findAllSort ,先findAll再result.sort排序
+        UserInfoBean results = getRealm().where(UserInfoBean.class).
+                findFirst();
+        if (results != null)
+            return getRealm().copyFromRealm(results);
+
+        return null;
+    }
+
+    void deleteUserInfo() {
+        getRealm().beginTransaction();
+        getRealm().delete(UserInfoBean.class);
+        getRealm().commitTransaction();
     }
 }

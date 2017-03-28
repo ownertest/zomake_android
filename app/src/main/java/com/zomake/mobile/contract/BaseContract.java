@@ -1,5 +1,7 @@
 package com.zomake.mobile.contract;
 
+import android.view.View;
+
 import com.jaydenxiao.common.base.BasePresenter;
 import com.jaydenxiao.common.base.BaseView;
 import com.zomake.mobile.bean.AdvertImageBean;
@@ -99,6 +101,18 @@ public interface BaseContract {
         void showProductList(CatalogProductListBean bean, boolean isRefresh);
 
         void showCatalogList(MainCatalogBean bean);
+    }
+
+    abstract class ALoginPresenter extends BasePresenter<ILoginView> {
+        public abstract void login(String userName, String password);
+
+        public abstract void logout();
+    }
+
+    interface ILoginView extends BaseView {
+        void showLoginView();
+
+        void showLogoutView();
     }
 
 }

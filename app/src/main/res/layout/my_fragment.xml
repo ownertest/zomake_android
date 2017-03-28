@@ -2,21 +2,25 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
-              android:orientation="vertical"
-              android:background="#f4f4f4">
+              android:background="#f4f4f4"
+              android:orientation="vertical">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:background="#4a4a4a">
+        android:background="#4a4a4a"
+        android:orientation="vertical">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/user_info_default_banner"
             android:orientation="vertical">
-            <RelativeLayout android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="20dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp">
 
 
                 <com.jaydenxiao.common.commonwidget.FontTextView
@@ -24,116 +28,134 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:layout_marginLeft="16dp"
                     android:text="\ue6a5"
                     android:textColor="@color/white"
-                    android:layout_marginLeft="16dp"
-                    android:textSize="20dp" />
+                    android:textSize="20dp"/>
 
                 <com.jaydenxiao.common.commonwidget.FontTextView
                     android:id="@+id/user_center_msg"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
                     android:layout_gravity="center"
                     android:layout_marginRight="16dp"
-                    android:layout_alignParentRight="true"
                     android:text="\ue6d1"
                     android:textColor="@color/black"
-                    android:textSize="20dp" />
+                    android:textSize="20dp"/>
 
             </RelativeLayout>
+
+            <ImageView
+                android:id="@+id/iv_user_head"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_gravity="center_horizontal"
+                android:src="@drawable/usercenter_avatar"/>
+
             <TextView
                 android:id="@+id/tv_user_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:drawableTop="@drawable/usercenter_avatar"
+                android:layout_gravity="center_horizontal"
                 android:drawablePadding="5dp"
                 android:gravity="center"
-                android:layout_gravity="center_horizontal"
-                android:text="Zacku"
                 android:textColor="@color/white"
-                android:textSize="13sp" />
+                android:textSize="13sp"/>
+
+            <Button
+                android:id="@+id/btn_login"
+                style="@style/black_15sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:background="@color/white"
+                android:text="登录/注册"
+                android:visibility="gone"/>
 
             <TextView
                 android:id="@+id/tv_user_phone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="16dp"
                 android:layout_marginTop="5dp"
                 android:gravity="center"
-                android:layout_gravity="center_horizontal"
-                android:text="铂金会员 Z9"
                 android:textColor="@color/white"
-                android:textSize="13sp"
-                android:layout_marginBottom="16dp"/>
+                android:textSize="13sp"/>
         </LinearLayout>
     </LinearLayout>
 
     <LinearLayout
-        android:layout_height="wrap_content"
         android:layout_width="match_parent"
-        android:orientation="horizontal"
-        android:layout_marginTop="@dimen/margin_10">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_10"
+        android:orientation="horizontal">
+
         <LinearLayout
             android:id="@+id/order"
-            android:background="@color/white"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:orientation="vertical"
+            android:background="@color/white"
             android:clickable="true"
-            android:gravity="center_horizontal">
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
 
             <com.jaydenxiao.common.commonwidget.FontTextView
                 android:id="@+id/icon_order"
-                android:layout_marginTop="@dimen/margin_10"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/margin_10"
                 android:text="\ue79b"
                 android:textColor="@color/black"
                 android:textSize="20dp"
-                android:layout_gravity="center_horizontal"
                 />
+
             <TextView
                 android:id="@+id/tv_order"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="订单"
-                android:layout_marginTop="10dp"
                 android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10dp"
+                android:text="订单"
                 android:textColor="@color/black"
-                android:textSize="12dp" />
+                android:textSize="12dp"/>
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/car"
-            android:background="@color/white"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:layout_marginLeft="1dp"
-            android:orientation="vertical"
+            android:layout_weight="1"
+            android:background="@color/white"
             android:clickable="true"
-            android:gravity="center_horizontal">
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
 
             <com.jaydenxiao.common.commonwidget.FontTextView
                 android:id="@+id/icon_car"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginLeft="2dp"
                 android:layout_marginTop="@dimen/margin_10"
                 android:text="\ue788"
                 android:textColor="@color/black"
                 android:textSize="20dp"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginLeft="2dp"
-            />
+                />
+
             <TextView
                 android:id="@+id/tv_car"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
                 android:layout_marginTop="10dp"
                 android:text="购物车"
                 android:textColor="@color/black"
-                android:layout_gravity="center_horizontal"
-                android:textSize="12dp" />
+                android:textSize="12dp"/>
         </LinearLayout>
 
     </LinearLayout>
@@ -145,55 +167,58 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         app:loadMoreEnabled="true"
-        app:refreshEnabled="true" />
+        app:refreshEnabled="true"/>
 
     <RelativeLayout
-        android:layout_height="wrap_content"
         android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_10"
         android:background="@color/white"
-        android:padding="@dimen/margin_10"
-        android:layout_marginTop="@dimen/margin_10">
+        android:padding="@dimen/margin_10">
+
         <TextView
-            android:layout_height="wrap_content"
             android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:text="邀请好友，各得30元代金券"
             android:textSize="13sp"
-        />
+            />
+
         <com.jaydenxiao.common.commonwidget.FontTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginRight="16dp"
             android:layout_alignParentRight="true"
             android:layout_centerHorizontal="true"
+            android:layout_gravity="center"
+            android:layout_marginRight="16dp"
             android:text="\ue928"
             android:textColor="@color/black"
-            android:textSize="20dp" />
+            android:textSize="20dp"/>
     </RelativeLayout>
 
     <RelativeLayout
-        android:layout_height="wrap_content"
         android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_10"
         android:background="@color/white"
-        android:padding="@dimen/margin_10"
-        android:layout_marginTop="@dimen/margin_10">
+        android:padding="@dimen/margin_10">
+
         <TextView
-            android:layout_height="wrap_content"
             android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:text="设计师品牌入驻，享高额销售奖励"
             android:textSize="13sp"
-        />
+            />
 
         <com.jaydenxiao.common.commonwidget.FontTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginRight="16dp"
             android:layout_alignParentRight="true"
             android:layout_centerHorizontal="true"
+            android:layout_gravity="center"
+            android:layout_marginRight="16dp"
             android:text="\ue928"
             android:textColor="@color/black"
-            android:textSize="20dp" />
+            android:textSize="20dp"/>
     </RelativeLayout>
 
 </LinearLayout>

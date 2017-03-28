@@ -4,11 +4,8 @@ import android.util.SparseArray;
 
 import com.jaydenxiao.common.baserx.RxSubscriber;
 import com.jaydenxiao.common.commonutils.CollectionUtils;
-import com.jaydenxiao.common.commonutils.StringUtils;
 import com.zomake.mobile.api.ApiService;
 import com.zomake.mobile.api.HttpManager;
-import com.zomake.mobile.bean.CatalogBean;
-import com.zomake.mobile.bean.CatalogBean.DataEntity.AttachmentEntityXXXX.ProductsEntity.AttachmentEntityXXX.TemplateEntity;
 import com.zomake.mobile.bean.CatalogFilterBean;
 import com.zomake.mobile.bean.CatalogFilterBean.ValueBean;
 import com.zomake.mobile.bean.CatalogProductListBean;
@@ -17,14 +14,10 @@ import com.zomake.mobile.contract.BaseContract;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import rx.Observable;
-import rx.functions.Action1;
-import rx.functions.Func1;
 
 /**
  * Created by wojiushiwn on 2017/3/23.
@@ -47,7 +40,7 @@ public class CatalogListPresenter extends BaseContract.ACatalogListPresenter {
         parameter.put("page", "1");
         Observable ob = HttpManager.getInstance().getHttpService(ApiService.class)
                 .getCatalogProductList(parameter);
-        mRxManage.add(HttpManager.getInstance().toSubscribe(ob, new RxSubscriber<CatalogProductListBean>(mContext, false) {
+        mRxManager.add(HttpManager.getInstance().toSubscribe(ob, new RxSubscriber<CatalogProductListBean>(mContext, false) {
 
             @Override
             protected void _onNext(CatalogProductListBean catalogProductListBean) {
@@ -65,7 +58,7 @@ public class CatalogListPresenter extends BaseContract.ACatalogListPresenter {
     public void getCatalogList(String catalogId) {
         Observable ob = HttpManager.getInstance().getHttpService(ApiService.class)
                 .getModelList(catalogId);
-        mRxManage.add(HttpManager.getInstance().toSubscribe(ob, new RxSubscriber<ModelBean>(mContext, false) {
+        mRxManager.add(HttpManager.getInstance().toSubscribe(ob, new RxSubscriber<ModelBean>(mContext, false) {
 
             @Override
             protected void _onNext(ModelBean bean) {
@@ -109,7 +102,7 @@ public class CatalogListPresenter extends BaseContract.ACatalogListPresenter {
         mFilterBeanList.add(styleFilterBean);
 
         List<ValueBean> tagList = new ArrayList<>();
-        mRxManage.add(Observable.from(bean.getData())
+        mRxManager.add(Observable.from(bean.getData())
                 .filter(dataEntity -> dataEntity.getAttachment() != null)
                 .filter(dataEntity -> dataEntity.getAttachment().getNameArray() != null)
                 .map(dataEntity -> dataEntity.getAttachment().getNameArray())

@@ -12,7 +12,7 @@ import com.jaydenxiao.common.baserx.RxManager;
 public abstract class BasePresenter<T>{
     public Context mContext;
     public T mView;
-    public RxManager mRxManage = new RxManager();
+    public RxManager mRxManager = new RxManager();
 
     public void setVM(T v) {
         this.mView = v;
@@ -21,6 +21,6 @@ public abstract class BasePresenter<T>{
     public void onStart(){
     };
     public void onDestroy() {
-        mRxManage.clear();
+        mRxManager.clear();
     }
 }

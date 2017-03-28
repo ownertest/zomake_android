@@ -20,8 +20,6 @@ import java.util.List;
 import java.util.Map;
 
 import rx.Observable;
-import rx.Subscriber;
-import rx.functions.Func1;
 
 /**
  * Created by wojiushiwn on 2017/3/15.
@@ -55,7 +53,7 @@ public class ProductDetailPresenter extends BaseContract.AProductDetailPresenter
     @Override
     public void getProductDetail(String eid) {
         Observable ob = HttpManager.getInstance().getHttpService(ApiService.class).getProductDetail(eid);
-        mRxManage.add(HttpManager.getInstance().toSubscribe(ob, new RxSubscriber<ProductDetailBean>(mContext, false) {
+        mRxManager.add(HttpManager.getInstance().toSubscribe(ob, new RxSubscriber<ProductDetailBean>(mContext, false) {
 
             @Override
             protected void _onNext(ProductDetailBean productDetailBean) {
@@ -100,7 +98,7 @@ public class ProductDetailPresenter extends BaseContract.AProductDetailPresenter
 
         mView.resetBuyButtonStatus(false);
 
-        mRxManage.add(Observable.from(mPropertyList)
+        mRxManager.add(Observable.from(mPropertyList)
                 .filter(propertyArrEntity ->
                         !mPropertyKeyList.contains("style") ||
                                 propertyArrEntity.getStyle().equals(mCurAttrValuesMap.get("style")))
@@ -139,7 +137,7 @@ public class ProductDetailPresenter extends BaseContract.AProductDetailPresenter
             mTempGoodsForModel = new ArrayList<>();
             mTempGoodsForStyle = new ArrayList<>();
 
-            mRxManage.add(Observable.from(mPropertyList)
+            mRxManager.add(Observable.from(mPropertyList)
                     .subscribe(propertyArrEntity -> {
                         if (!TextUtils.isEmpty(propertyArrEntity.getSize()) &&
                                 !mTempGoodsForSize.contains(propertyArrEntity.getSize())) {

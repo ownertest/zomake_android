@@ -55,8 +55,6 @@ public class CatalogProductListActivity extends BaseActivity<CatalogListPresente
     DrawerLayout mDrawerRoot;
     @BindView(R.id.recyclerView)
     IRecyclerView mRecyclerView;
-    @BindView(R.id.title_bar)
-    NormalTitleBar mTitleBar;
     @BindView(R.id.tv_newest)
     CheckedTextView mTvNewest;
     @BindView(R.id.tv_hottest)

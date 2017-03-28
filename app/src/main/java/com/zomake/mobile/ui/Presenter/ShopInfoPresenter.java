@@ -29,7 +29,7 @@ public class ShopInfoPresenter extends BaseContract.AShopInfoPresenter {
         parameter.put("page", String.valueOf(page));
         Observable ob = HttpManager.getInstance().getHttpService(ApiService.class)
                 .getCatalogProductList(parameter);
-        mRxManage.add(HttpManager.getInstance().toSubscribe(ob, new RxSubscriber<CatalogProductListBean>(mContext, false) {
+        mRxManager.add(HttpManager.getInstance().toSubscribe(ob, new RxSubscriber<CatalogProductListBean>(mContext, false) {
 
             @Override
             protected void _onNext(CatalogProductListBean catalogProductListBean) {
@@ -54,7 +54,7 @@ public class ShopInfoPresenter extends BaseContract.AShopInfoPresenter {
         parameter.put("page", "1");
         Observable ob = HttpManager.getInstance().getHttpService(ApiService.class)
                 .getCatalogProductList(parameter);
-        mRxManage.add(HttpManager.getInstance().toSubscribe(ob, new RxSubscriber<CatalogProductListBean>(mContext, false) {
+        mRxManager.add(HttpManager.getInstance().toSubscribe(ob, new RxSubscriber<CatalogProductListBean>(mContext, false) {
 
             @Override
             protected void _onNext(CatalogProductListBean catalogProductListBean) {
@@ -72,7 +72,7 @@ public class ShopInfoPresenter extends BaseContract.AShopInfoPresenter {
     public void getShopDetail(String shopId) {
         Observable ob = HttpManager.getInstance().getHttpService(ApiService.class)
                 .getShopDetail(shopId);
-        mRxManage.add(HttpManager.getInstance().toSubscribe(ob, new RxSubscriber<ShopDetailBean>(mContext, false) {
+        mRxManager.add(HttpManager.getInstance().toSubscribe(ob, new RxSubscriber<ShopDetailBean>(mContext, false) {
 
             @Override
             protected void _onNext(ShopDetailBean bean) {
@@ -94,7 +94,7 @@ public class ShopInfoPresenter extends BaseContract.AShopInfoPresenter {
         parameter.put("page", "1");
         Observable ob = HttpManager.getInstance().getHttpService(ApiService.class)
                 .getCatalogList(parameter);
-        mRxManage.add(HttpManager.getInstance().toSubscribe(ob, new RxSubscriber<MainCatalogBean>(mContext, false) {
+        mRxManager.add(HttpManager.getInstance().toSubscribe(ob, new RxSubscriber<MainCatalogBean>(mContext, false) {
 
             @Override
             protected void _onNext(MainCatalogBean bean) {

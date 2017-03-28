@@ -1,5 +1,6 @@
 package com.zomake.mobile.ui.activity;
 
+import android.Manifest;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
@@ -13,19 +14,16 @@ import android.view.ViewGroup;
 import com.flyco.tablayout.CommonTabLayout;
 import com.flyco.tablayout.listener.CustomTabEntity;
 import com.flyco.tablayout.listener.OnTabSelectListener;
-import com.google.gson.Gson;
 import com.jaydenxiao.common.base.BaseActivity;
-import com.jaydenxiao.common.commonutils.JsonUtils;
 import com.jaydenxiao.common.commonutils.LogUtils;
-import com.jaydenxiao.common.daynightmodeutils.ChangeModeController;
+import com.mylhyl.acp.Acp;
+import com.mylhyl.acp.AcpOptions;
 import com.zomake.mobile.R;
 import com.zomake.mobile.app.AppConstant;
-import com.zomake.mobile.bean.ChinaCityBean;
 import com.zomake.mobile.bean.TabEntity;
 import com.zomake.mobile.ui.fragment.CustomFragment;
 import com.zomake.mobile.ui.fragment.MyFragment;
 import com.zomake.mobile.ui.fragment.ShopFragment;
-import com.zomake.mobile.utils.MyUtils;
 
 import java.util.ArrayList;
 
@@ -76,6 +74,10 @@ public class MainActivity extends BaseActivity {
 
     @Override
     public void initView() {
+        Acp.getInstance(this)
+                .request(new AcpOptions.Builder()
+                        .setPermissions(Manifest.permission.READ_PHONE_STATE, Manifest.permission.ACCESS_WIFI_STATE)
+                        .build(), null);
         //初始化菜单
         initTab();
     }
@@ -171,6 +173,7 @@ public class MainActivity extends BaseActivity {
                 transaction.hide(customFragment);
                 transaction.show(myFragment);
                 transaction.commitAllowingStateLoss();
+                myFragment.setUserInfoView();
                 break;
             default:
                 break;
