@@ -115,4 +115,16 @@ public interface BaseContract {
         void showLogoutView();
     }
 
+    abstract class ARegisterPresenter extends BasePresenter<IRegisterView> {
+        public abstract void sendSmsCode(String username);
+
+        public abstract void register(String username, String password, String smsCode);
+    }
+
+    interface IRegisterView extends BaseView {
+        void showRegisterView();
+
+        void showSendCodeView();
+    }
+
 }

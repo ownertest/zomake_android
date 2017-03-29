@@ -100,12 +100,11 @@ public class ShopInfoActivity extends BaseActivity<ShopInfoPresenter> implements
 
     @Override
     public int getLayoutId() {
-        return R.layout.activity_personal;
+        return R.layout.activity_shop_info;
     }
 
     @Override
     public void initPresenter() {
-        mPresenter.setVM(this);
     }
 
     @Override
@@ -116,16 +115,16 @@ public class ShopInfoActivity extends BaseActivity<ShopInfoPresenter> implements
 
         initRefresh();
         List<String> channelNames = new ArrayList<>();
-        List<Fragment> mNewsFragmentList = new ArrayList<>();
+        List<Fragment> mFragmentList = new ArrayList<>();
         for (int i = 0; i < MAX_TAB_SIZE; i++) {
             channelNames.add(mChannelNameArr[i]);
-            mNewsFragmentList.add(createListFragments(mShopId));
+            mFragmentList.add(createListFragments(mShopId));
         }
         if (fragmentAdapter == null) {
-            fragmentAdapter = new BaseFragmentAdapter(getSupportFragmentManager(), mNewsFragmentList, channelNames);
+            fragmentAdapter = new BaseFragmentAdapter(getSupportFragmentManager(), mFragmentList, channelNames);
         } else {
             //刷新fragment
-            fragmentAdapter.setFragments(getSupportFragmentManager(), mNewsFragmentList, channelNames);
+            fragmentAdapter.setFragments(getSupportFragmentManager(), mFragmentList, channelNames);
         }
 
         mViewPager.setAdapter(fragmentAdapter);

@@ -63,13 +63,18 @@
                 android:textColor="@color/white"
                 android:textSize="13sp"/>
 
-            <Button
+            <TextView
                 android:id="@+id/btn_login"
-                style="@style/black_15sp"
+                style="@style/black_13sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:background="@color/white"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp"
+                android:layout_marginTop="20dp"
                 android:text="登录/注册"
                 android:visibility="gone"/>
 

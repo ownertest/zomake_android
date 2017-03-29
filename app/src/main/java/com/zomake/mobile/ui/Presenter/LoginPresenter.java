@@ -12,9 +12,12 @@ import com.zomake.mobile.api.HttpManager;
 import com.zomake.mobile.app.BaseApplication;
 import com.zomake.mobile.bean.UserInfoBean;
 import com.zomake.mobile.contract.BaseContract;
+import com.zomake.mobile.event.UserChangeEvent;
 import com.zomake.mobile.ui.activity.SettingActivity;
 import com.zomake.mobile.utils.DeviceUtil;
 import com.zomake.mobile.utils.UserInfoManager;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -31,11 +34,8 @@ import rx.functions.Func2;
 public class LoginPresenter extends BaseContract.ALoginPresenter {
     @Override
     public void login(String userName, String password) {
-        String[] country = DeviceUtil.getCountryZipCode(mContext);
         Map<String, String> parameters = new HashMap<>();
         parameters.put("username", userName);
-        parameters.put("countrycode", country[0]);
-        parameters.put("country", country[1]);
         parameters.put("password", password);
 
         Observable<BaseHttpResult<Boolean>> loginOb = HttpManager.getInstance().getHttpService(ApiAccountService.class)
@@ -66,6 +66,8 @@ public class LoginPresenter extends BaseContract.ALoginPresenter {
                                     o.setPhone("18511621123");
                                     UserInfoManager.getInstance().setCurUserInfo(o);
                                     Toast.makeText(mContext, "登录成功", Toast.LENGTH_SHORT).show();
+                                    UserChangeEvent userChangeEvent = new UserChangeEvent(UserChangeEvent.UserChangeType.LOGIN);
+                                    EventBus.getDefault().post(userChangeEvent);
                                     mView.showLoginView();
                                 }
                             }
@@ -87,6 +89,8 @@ public class LoginPresenter extends BaseContract.ALoginPresenter {
                 UserInfoManager.getInstance().logout();
                 mView.showLogoutView();
                 Toast.makeText(mContext, "退出登录成功", Toast.LENGTH_SHORT).show();
+                UserChangeEvent userChangeEvent = new UserChangeEvent(UserChangeEvent.UserChangeType.LOGOUT);
+                EventBus.getDefault().post(userChangeEvent);
             }
 
             @Override

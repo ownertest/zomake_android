@@ -46,7 +46,10 @@ public abstract class BaseActivity<T extends BasePresenter> extends AppCompatAct
         mPresenter = TUtil.getT(this, 0);
         if (mPresenter != null) {
             mPresenter.mContext = this;
+            if (this instanceof BaseView)
+                mPresenter.setVM(this);
         }
+
         this.initData(getIntent().getExtras());
         this.initPresenter();
         this.initView();

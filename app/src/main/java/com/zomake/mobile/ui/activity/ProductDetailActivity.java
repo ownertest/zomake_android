@@ -84,7 +84,6 @@ public class ProductDetailActivity extends BaseActivity<ProductDetailPresenter> 
 
     @Override
     public void initPresenter() {
-        mPresenter.setVM(this);
     }
 
     @Override

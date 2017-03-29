@@ -13,10 +13,14 @@ import com.zomake.mobile.api.ApiAccountService;
 import com.zomake.mobile.api.HttpManager;
 import com.zomake.mobile.bean.UserInfoBean;
 import com.zomake.mobile.contract.BaseContract;
+import com.zomake.mobile.event.UserChangeEvent;
 import com.zomake.mobile.ui.Presenter.LoginPresenter;
 import com.zomake.mobile.utils.DeviceUtil;
 import com.zomake.mobile.utils.UserInfoManager;
 import com.zomake.mobile.widget.StateButton;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -49,7 +53,7 @@ public class SettingActivity extends BaseActivity<LoginPresenter> implements Bas
         if (UserInfoManager.getInstance().isLogin())
             mPresenter.logout();
         else
-            mPresenter.login("18511621123", "wn890331");
+            LoginRegisterActivity.startActivity(this);
     }
 
 
@@ -60,7 +64,8 @@ public class SettingActivity extends BaseActivity<LoginPresenter> implements Bas
 
     @Override
     public void initPresenter() {
-        mPresenter.setVM(this);
+
+        EventBus.getDefault().register(this);
     }
 
     @Override
@@ -100,5 +105,21 @@ public class SettingActivity extends BaseActivity<LoginPresenter> implements Bas
         mBtLogOut.setText("立即登录");
         mBtLogOut.setNormalTextColor(getResources().getColor(R.color.black));
         mBtLogOut.setNormalStrokeColor(getResources().getColor(R.color.black));
+    }
+
+    @Subscribe
+    public void onEventMainThread(final UserChangeEvent userChangeEvent) {
+
+        if (userChangeEvent.getType() == UserChangeEvent.UserChangeType.LOGOUT) {
+            showLogoutView();
+        } else {
+            showLoginView();
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
     }
 }

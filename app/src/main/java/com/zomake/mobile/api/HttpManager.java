@@ -9,6 +9,9 @@ import com.jaydenxiao.common.baserx.RetrofitCache;
 import com.jaydenxiao.common.baserx.RxSubscriber;
 import com.jaydenxiao.common.transformer.CommonTransformer;
 import com.zomake.mobile.app.BaseApplication;
+import com.zomake.mobile.bean.UserInfoBean;
+import com.zomake.mobile.utils.DeviceUtil;
+import com.zomake.mobile.utils.UserInfoManager;
 
 import java.io.File;
 import java.util.concurrent.TimeUnit;
@@ -75,10 +78,14 @@ public class HttpManager {
     private static Interceptor addHeaderInterceptor() {
         return chain -> {
             Request originalRequest = chain.request();
+            String[] country = DeviceUtil.getCountryZipCode(BaseApplication.getAppContext());
+
             HttpUrl.Builder url = originalRequest.url().newBuilder()
                     .scheme(originalRequest.url().scheme())
                     .host(originalRequest.url().host())
-                    .addQueryParameter("appid", "582c16b6351a9f03fba3d7ea");
+                    .addQueryParameter("appid", "582c16b6351a9f03fba3d7ea")
+                    .addQueryParameter("country", country[1])
+                    .addQueryParameter("countrycode", country[0]);
             Request.Builder requestBuilder = originalRequest.newBuilder()
                     .url(url.build())
                     // Provide your custom header here

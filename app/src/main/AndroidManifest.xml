@@ -18,7 +18,6 @@
 
 
     <application
-        tools:replace="android:name"
         android:name="com.zomake.mobile.app.BaseApplication"
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
@@ -51,6 +50,7 @@
         </activity>
         <activity android:name=".ui.activity.CatalogProductListActivity"/>
         <activity android:name=".ui.activity.ShopInfoActivity"/>
+        <activity android:name=".ui.activity.LoginRegisterActivity"/>
     </application>
 
 </manifest>

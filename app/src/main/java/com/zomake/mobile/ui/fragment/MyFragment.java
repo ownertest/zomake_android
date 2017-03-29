@@ -21,16 +21,21 @@ import com.jaydenxiao.common.irecyclerview.universaladapter.ViewHolderHelper;
 import com.jaydenxiao.common.irecyclerview.universaladapter.recyclerview.CommonRecycleViewAdapter;
 import com.jaydenxiao.common.irecyclerview.universaladapter.recyclerview.OnItemClickListener;
 import com.zomake.mobile.R;
+import com.zomake.mobile.event.UserChangeEvent;
 import com.zomake.mobile.ui.activity.AddressManageActivity;
 import com.zomake.mobile.ui.activity.CarActivity;
 import com.zomake.mobile.ui.activity.CatalogProductListActivity;
 import com.zomake.mobile.ui.activity.InboxActivity;
+import com.zomake.mobile.ui.activity.LoginRegisterActivity;
 import com.zomake.mobile.ui.activity.OrderActivity;
 import com.zomake.mobile.ui.activity.ProductDetailActivity;
 import com.zomake.mobile.ui.activity.SettingActivity;
 import com.zomake.mobile.ui.activity.WalletActivity;
 import com.zomake.mobile.utils.UserInfoManager;
 import com.zomake.mobile.widget.SpacesItemDecoration;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
 
 import java.util.Arrays;
 
@@ -67,7 +72,7 @@ public class MyFragment extends BaseFragment implements View.OnClickListener {
     @BindView(R.id.tv_car)
     TextView mTvCar;
     @BindView(R.id.btn_login)
-    Button mBtnLogin;
+    TextView mBtnLogin;
 
     private String[] iconIds = {"\uEA3B", "\ue794", "\ue7ac", "\ueac9", "\ue6df", "\ue6a4"};
     private String[] iconTexts = {"钱包", "收货地址", "优惠", "收件箱", "收藏", "反馈"};
@@ -80,7 +85,7 @@ public class MyFragment extends BaseFragment implements View.OnClickListener {
 
     @Override
     public void initPresenter() {
-
+        EventBus.getDefault().register(this);
     }
 
     @Override
@@ -98,7 +103,7 @@ public class MyFragment extends BaseFragment implements View.OnClickListener {
             mTvUserPhone.setVisibility(View.GONE);
             mBtnLogin.setVisibility(View.VISIBLE);
         } else {
-            mTvUserPhone.setVisibility(View.VISIBLE);
+            mTvUserName.setVisibility(View.VISIBLE);
             mTvUserPhone.setVisibility(View.VISIBLE);
             mBtnLogin.setVisibility(View.GONE);
             String url = !UserInfoManager.getInstance().isLogin() || TextUtils.isEmpty(UserInfoManager.getInstance().getCurUserInfo().getHead()) ? "" :
@@ -173,6 +178,17 @@ public class MyFragment extends BaseFragment implements View.OnClickListener {
 
     @OnClick(R.id.btn_login)
     public void login() {
+        LoginRegisterActivity.startActivity(getActivity());
+    }
 
+    @Subscribe
+    public void onEventMainThread(final UserChangeEvent userChangeEvent) {
+        setUserInfoView();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
     }
 }

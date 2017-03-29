@@ -158,7 +158,6 @@ public class CatalogProductListActivity extends BaseActivity<CatalogListPresente
 
     @Override
     public void initPresenter() {
-        mPresenter.setVM(this);
     }
 
     @Override

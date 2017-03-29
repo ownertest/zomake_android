@@ -28,6 +28,8 @@ public class UserInfoBean extends RealmObject {
     private String phone;
     @PrimaryKey
     private String userid;
+    private String country;
+    private String countrycode;
 
     public String getUserid() {
         return userid;
@@ -91,5 +93,21 @@ public class UserInfoBean extends RealmObject {
 
     public void setSex(int sex) {
         this.sex = sex;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public String getCountrycode() {
+        return countrycode;
+    }
+
+    public void setCountrycode(String countrycode) {
+        this.countrycode = countrycode;
     }
 }

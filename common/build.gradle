@@ -68,6 +68,7 @@ dependencies {
     compile 'de.hdodenhof:circleimageview:2.1.0'
     compile 'com.mylhyl:acp:1.1.7' //权限控制
     compile 'com.github.franmontiel:PersistentCookieJar:v1.0.1'
+    compile 'org.greenrobot:eventbus:3.0.0'
 }
 
 
