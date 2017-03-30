@@ -1,30 +1,21 @@
 package com.zomake.mobile.ui.fragment;
 
-import android.os.Bundle;
 import android.support.design.widget.TextInputEditText;
 import android.text.TextUtils;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.jaydenxiao.common.base.BaseFragment;
 import com.jaydenxiao.common.commonutils.FormatUtil;
+import com.jaydenxiao.common.commonutils.ToastUitl;
 import com.jaydenxiao.common.commonwidget.DrawableCenterTextView;
 import com.jaydenxiao.common.commonwidget.FontTextView;
 import com.zomake.mobile.R;
 import com.zomake.mobile.contract.BaseContract;
-import com.zomake.mobile.event.UserChangeEvent;
 import com.zomake.mobile.ui.Presenter.LoginPresenter;
 
-import org.greenrobot.eventbus.Subscribe;
-
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
-import butterknife.Unbinder;
 
 /**
  * Created by wojiushiwn on 2017/3/29.
@@ -79,7 +70,6 @@ public class LoginFragment extends BaseFragment<LoginPresenter> implements BaseC
 
     @Override
     public void showLoginView() {
-        Toast.makeText(getActivity(), "登录成功", Toast.LENGTH_SHORT).show();
         getActivity().finish();
     }
 
@@ -92,12 +82,12 @@ public class LoginFragment extends BaseFragment<LoginPresenter> implements BaseC
     public void loginClick() {
         String phone = mEtPhone.getText().toString();
         if (TextUtils.isEmpty(phone) || !FormatUtil.isMobileNO(mEtPhone.getText().toString())) {
-            Toast.makeText(getActivity(), "请输入正确的手机号", Toast.LENGTH_SHORT).show();
+            ToastUitl.showShort("请输入正确的手机号");
             return;
         }
         String pwd = mEtPwd.getText().toString();
         if (TextUtils.isEmpty(pwd) || pwd.length() < 6) {
-            Toast.makeText(getActivity(), "请输入正确的密码", Toast.LENGTH_SHORT).show();
+            ToastUitl.showShort("请输入正确的密码");
             return;
         }
 

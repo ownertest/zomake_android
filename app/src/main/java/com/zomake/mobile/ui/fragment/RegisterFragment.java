@@ -1,40 +1,33 @@
 package com.zomake.mobile.ui.fragment;
 
-import android.os.Bundle;
 import android.support.design.widget.TextInputEditText;
-import android.text.InputType;
 import android.text.TextUtils;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.jaydenxiao.common.base.BaseFragment;
 import com.jaydenxiao.common.baserx.RxCountDown;
 import com.jaydenxiao.common.commonutils.FormatUtil;
+import com.jaydenxiao.common.commonutils.ToastUitl;
 import com.jaydenxiao.common.commonwidget.FontTextView;
 import com.zomake.mobile.R;
 import com.zomake.mobile.contract.BaseContract;
+import com.zomake.mobile.ui.Presenter.LoginPresenter;
 import com.zomake.mobile.ui.Presenter.RegisterPresenter;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
-import butterknife.Unbinder;
 import rx.Subscriber;
-import rx.functions.Action0;
 
 /**
  * Created by wojiushiwn on 2017/3/29.
  * desc:
  */
 
-public class RegisterFragment extends BaseFragment<RegisterPresenter> implements BaseContract.IRegisterView {
+public class RegisterFragment extends BaseFragment<RegisterPresenter>
+        implements BaseContract.IRegisterView, BaseContract.ILoginView {
     @BindView(R.id.et_phone)
     TextInputEditText mEtPhone;
     @BindView(R.id.et_code)
@@ -47,6 +40,8 @@ public class RegisterFragment extends BaseFragment<RegisterPresenter> implements
     FontTextView mTvShowPwd;
     @BindView(R.id.btn_register)
     Button mBtnRegister;
+
+    private LoginPresenter mLoginPresenter;
 
     boolean isShowPwd = false;
 
@@ -72,7 +67,8 @@ public class RegisterFragment extends BaseFragment<RegisterPresenter> implements
 
     @Override
     public void initPresenter() {
-
+        mLoginPresenter = new LoginPresenter();
+        mLoginPresenter.setVM(this);
     }
 
     @Override
@@ -81,8 +77,8 @@ public class RegisterFragment extends BaseFragment<RegisterPresenter> implements
     }
 
     @Override
-    public void showRegisterView() {
-
+    public void showRegisterView(String userName, String pwd) {
+        mLoginPresenter.login(userName, pwd);
     }
 
     @Override
@@ -124,7 +120,7 @@ public class RegisterFragment extends BaseFragment<RegisterPresenter> implements
     public void sendCodeClick() {
         String userName = mEtPhone.getText().toString();
         if (!FormatUtil.isMobileNO(userName)) {
-            Toast.makeText(getActivity(), "请输入正确的手机号", Toast.LENGTH_SHORT).show();
+            ToastUitl.showShort("请输入正确的手机号");
             return;
         }
 
@@ -135,23 +131,32 @@ public class RegisterFragment extends BaseFragment<RegisterPresenter> implements
     public void registerClick() {
         String userName = mEtPhone.getText().toString();
         if (!FormatUtil.isMobileNO(userName)) {
-            Toast.makeText(getActivity(), "请输入正确的手机号", Toast.LENGTH_SHORT).show();
+            ToastUitl.showShort("请输入正确的手机号");
             return;
         }
 
         String code = mEtCode.getText().toString();
         if (TextUtils.isEmpty(code)) {
-            Toast.makeText(getActivity(), "请输入手机验证码", Toast.LENGTH_SHORT).show();
+            ToastUitl.showShort("请输入手机验证码");
             return;
         }
 
         String pwd = mEtPwd.getText().toString();
         if (TextUtils.isEmpty(pwd) || pwd.length() < 6) {
-            Toast.makeText(getActivity(), "请输入正确的密码", Toast.LENGTH_SHORT).show();
+            ToastUitl.showShort("请输入正确的密码");
             return;
         }
 
         mPresenter.register(userName, pwd, code);
     }
 
+    @Override
+    public void showLoginView() {
+        getActivity().finish();
+    }
+
+    @Override
+    public void showLogoutView() {
+
+    }
 }

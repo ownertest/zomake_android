@@ -76,7 +76,17 @@ public class MainActivity extends BaseActivity {
     public void initView() {
         Acp.getInstance(this)
                 .request(new AcpOptions.Builder()
-                        .setPermissions(Manifest.permission.READ_PHONE_STATE, Manifest.permission.ACCESS_WIFI_STATE)
+                        .setPermissions(
+                                Manifest.permission.READ_PHONE_STATE,
+                                Manifest.permission.ACCESS_WIFI_STATE,
+                                Manifest.permission.ACCESS_NETWORK_STATE,
+                                Manifest.permission.INTERNET,
+                                Manifest.permission.CAMERA,
+                                Manifest.permission.READ_CONTACTS,
+                                Manifest.permission.WRITE_CONTACTS,
+                                Manifest.permission.ACCESS_COARSE_LOCATION,
+                                Manifest.permission.ACCESS_FINE_LOCATION,
+                                Manifest.permission.WRITE_EXTERNAL_STORAGE)
                         .build(), null);
         //初始化菜单
         initTab();

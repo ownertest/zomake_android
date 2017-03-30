@@ -63,7 +63,7 @@ public abstract class RxSubscriber<T> extends Subscriber<T> {
             LoadingDialog.cancelDialogForLoading();
         e.printStackTrace();
         //网络
-        if (!NetWorkUtils.isNetConnected(BaseApp.getAppContext())) {
+        if (!NetWorkUtils.isNetConnected(mContext)) {
             _onError(mContext.getString(R.string.no_net));
         }
         //服务器

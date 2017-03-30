@@ -1,20 +1,13 @@
 package com.zomake.mobile.ui.Presenter;
 
-import android.widget.Toast;
-
 import com.jaydenxiao.common.base.BaseHttpResult;
 import com.jaydenxiao.common.baserx.RxSubscriber;
 import com.jaydenxiao.common.commonutils.ToastUitl;
-import com.jaydenxiao.common.commonwidget.LoadingDialog;
-import com.zomake.mobile.R;
 import com.zomake.mobile.api.ApiAccountService;
 import com.zomake.mobile.api.HttpManager;
-import com.zomake.mobile.app.BaseApplication;
 import com.zomake.mobile.bean.UserInfoBean;
 import com.zomake.mobile.contract.BaseContract;
 import com.zomake.mobile.event.UserChangeEvent;
-import com.zomake.mobile.ui.activity.SettingActivity;
-import com.zomake.mobile.utils.DeviceUtil;
 import com.zomake.mobile.utils.UserInfoManager;
 
 import org.greenrobot.eventbus.EventBus;
@@ -65,7 +58,7 @@ public class LoginPresenter extends BaseContract.ALoginPresenter {
                                 if (o != null) {
                                     o.setPhone("18511621123");
                                     UserInfoManager.getInstance().setCurUserInfo(o);
-                                    Toast.makeText(mContext, "登录成功", Toast.LENGTH_SHORT).show();
+                                    ToastUitl.showShort("登录成功");
                                     UserChangeEvent userChangeEvent = new UserChangeEvent(UserChangeEvent.UserChangeType.LOGIN);
                                     EventBus.getDefault().post(userChangeEvent);
                                     mView.showLoginView();
@@ -74,6 +67,7 @@ public class LoginPresenter extends BaseContract.ALoginPresenter {
 
                             @Override
                             protected void _onError(String message) {
+                                ToastUitl.showShort("请检查手机号密码是否正确");
 
                             }
                         }));
@@ -88,7 +82,7 @@ public class LoginPresenter extends BaseContract.ALoginPresenter {
             protected void _onNext(Boolean o) {
                 UserInfoManager.getInstance().logout();
                 mView.showLogoutView();
-                Toast.makeText(mContext, "退出登录成功", Toast.LENGTH_SHORT).show();
+                ToastUitl.showShort("退出登录成功");
                 UserChangeEvent userChangeEvent = new UserChangeEvent(UserChangeEvent.UserChangeType.LOGOUT);
                 EventBus.getDefault().post(userChangeEvent);
             }

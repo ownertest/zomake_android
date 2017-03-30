@@ -122,7 +122,7 @@ public interface BaseContract {
     }
 
     interface IRegisterView extends BaseView {
-        void showRegisterView();
+        void showRegisterView(String userName, String pwd);
 
         void showSendCodeView();
     }

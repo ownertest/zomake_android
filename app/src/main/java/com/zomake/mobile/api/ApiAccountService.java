@@ -40,13 +40,14 @@ public interface ApiAccountService {
 
     @GET("https://passport.zomake.com/v1/captcha/sms")
     Observable<BaseHttpResult<Boolean>> getSmsCode(
-            @Query("username") String username, @Query("second") boolean second);
+            @Query("username") String username, @Query("second") boolean second,
+            @Query("rand") long rand);
 
     //?appid=581807bc59b9e60c94dfeddb&username=18026932863&country=cn&countrycode=86&password=123456&smscode=1642
     @POST("https://passport.zomake.com/v1/account/auth")
-    Observable<BaseHttpResult<Object>> register(@QueryMap Map<String, String> parameters);
+    Observable<BaseHttpResult<Boolean>> register(@QueryMap Map<String, String> parameters);
 
     @GET("https://passport.zomake.com/v1/account/auth/repeat")
-    Observable<BaseHttpResult<Boolean>> repeat(@Query("username") String userName);
+    Observable<BaseHttpResult<Boolean>> repeat(@Query("username") String userName, @Query("rand") long rand);
 
 }

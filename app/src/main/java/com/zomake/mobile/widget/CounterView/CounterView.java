@@ -13,6 +13,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.jaydenxiao.common.commonutils.ToastUitl;
 import com.zomake.mobile.R;
 
 /**
@@ -163,13 +164,13 @@ public class CounterView extends LinearLayout implements View.OnClickListener, T
                 tvMinu.setEnabled(false);
                 tvAdd.setEnabled(true);
                 needUpdate = true;
-                Toast.makeText(mContext, String.format("最少添加%s个数量", MIN_VALUE), Toast.LENGTH_SHORT).show();
+                ToastUitl.showShort(String.format("最少添加%s个数量", MIN_VALUE));
             } else if (countValue >= maxValue) {
                 countValue = maxValue;
                 tvMinu.setEnabled(true);
                 tvAdd.setEnabled(false);
                 needUpdate = true;
-                Toast.makeText(mContext, String.format("最多只能添加%s个数量", maxValue), Toast.LENGTH_SHORT).show();
+                ToastUitl.showShort(String.format("最多只能添加%s个数量", maxValue));
 
             } else {
                 tvMinu.setEnabled(true);
@@ -180,7 +181,7 @@ public class CounterView extends LinearLayout implements View.OnClickListener, T
             tvMinu.setEnabled(false);
             tvAdd.setEnabled(true);
             needUpdate = true;
-            Toast.makeText(mContext, String.format("最少添加%s个数量", MIN_VALUE), Toast.LENGTH_SHORT).show();
+            ToastUitl.showShort(String.format("最少添加%s个数量", MIN_VALUE));
 
         }
         changeWord(needUpdate);

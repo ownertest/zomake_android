@@ -12,6 +12,7 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.annotations.Expose;
 import com.jaydenxiao.common.baseapp.BaseApp;
 import com.jaydenxiao.common.commonutils.LogUtils;
+import com.jaydenxiao.common.commonutils.ToastUitl;
 import com.zomake.mobile.utils.UserInfoManager;
 import com.zomake.mobile.utils.RealmHelper;
 
@@ -34,6 +35,7 @@ public class BaseApplication extends Application {
         LogUtils.logInit(true);
         initRealm();
         UserInfoManager.getInstance();
+        ToastUitl.init(this);
     }
 
     public static Context getAppContext() {

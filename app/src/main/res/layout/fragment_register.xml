@@ -50,6 +50,7 @@
                 android:layout_height="50dp"
                 android:layout_marginLeft="10dp"
                 android:layout_toRightOf="@id/tv_phone_tip"
+                android:inputType="phone"
                 android:background="@null"
                 android:hint="手机号码"
                 android:textColorHint="@color/gray"/>
@@ -78,6 +79,7 @@
                 android:layout_height="50dp"
                 android:layout_marginLeft="10dp"
                 android:layout_toRightOf="@id/tv_code_icon"
+                android:inputType="number"
                 android:background="@null"
                 android:hint="验证码"
                 android:textColorHint="@color/gray"/>

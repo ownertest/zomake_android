@@ -19,6 +19,7 @@ import android.widget.Toast;
 
 import com.jaydenxiao.common.base.BaseActivity;
 import com.jaydenxiao.common.commonutils.ImageLoaderUtils;
+import com.jaydenxiao.common.commonutils.ToastUitl;
 import com.jaydenxiao.common.commonwidget.BottomDialog;
 import com.jaydenxiao.common.commonwidget.FontTextView;
 import com.jaydenxiao.common.irecyclerview.IRecyclerView;
@@ -233,7 +234,8 @@ public class ProductDetailActivity extends BaseActivity<ProductDetailPresenter> 
         mTvNot = (TextView) mBottomDialogView.findViewById(R.id.tv_not);
         mBtnCommit = (RelativeLayout) mBottomDialogView.findViewById(R.id.btn_commit);
         mTvSubPrice = (TextView) mBottomDialogView.findViewById(R.id.tv_sub_price);
-        mTvCommit.setOnClickListener(v -> Toast.makeText(ProductDetailActivity.this, (int) v.getTag() == R.id.btn_buy ? "买买买" : "加加加", Toast.LENGTH_SHORT).show());
+        mTvCommit.setOnClickListener(v ->
+                ToastUitl.showShort((int) v.getTag() == R.id.btn_buy ? "买买买" : "加加加"));
         IRecyclerView bottomDialogRecyclerView = (IRecyclerView) mBottomDialogView.findViewById(R.id.recyclerView);
         bottomDialogRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mGoodListAdapter =

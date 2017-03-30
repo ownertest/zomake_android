@@ -2,13 +2,19 @@ package com.zomake.mobile.ui.Presenter;
 
 import android.widget.Toast;
 
+import com.jaydenxiao.common.base.BaseHttpResult;
 import com.jaydenxiao.common.baserx.RxSubscriber;
+import com.jaydenxiao.common.commonutils.ToastUitl;
 import com.zomake.mobile.api.ApiAccountService;
 import com.zomake.mobile.api.HttpManager;
 import com.zomake.mobile.contract.BaseContract;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
+
+import rx.Observable;
+import rx.functions.Func1;
 
 /**
  * Created by wojiushiwn on 2017/3/29.
@@ -20,24 +26,30 @@ public class RegisterPresenter extends BaseContract.ARegisterPresenter {
     public void sendSmsCode(String username) {
 
 
-//        HttpManager.getInstance().getHttpService(ApiAccountService.class)
-//                .repeat(username)
-
         mRxManager.add(HttpManager.getInstance().toSubscribe(
                 HttpManager.getInstance().getHttpService(ApiAccountService.class)
-                        .getSmsCode(username, true)
-                        .filter(booleanBaseHttpResult -> booleanBaseHttpResult.result)
+                        .repeat(username, System.currentTimeMillis())
+                        .flatMap(new Func1<BaseHttpResult<Boolean>, Observable<BaseHttpResult<Boolean>>>() {
+                            @Override
+                            public Observable<BaseHttpResult<Boolean>> call(BaseHttpResult<Boolean> booleanBaseHttpResult) {
+                                return HttpManager.getInstance().getHttpService(ApiAccountService.class)
+                                        .getSmsCode(username, true, System.currentTimeMillis());
+
+                            }
+                        }).filter(booleanBaseHttpResult -> booleanBaseHttpResult.result)
                 , new RxSubscriber<Boolean>(mContext, true) {
                     @Override
                     protected void _onNext(Boolean booleanBaseHttpResult) {
-                        Toast.makeText(mContext, "验证码发送成功", Toast.LENGTH_SHORT).show();
-                        mView.showSendCodeView();
+                        String msg = booleanBaseHttpResult ? "验证码发送成功" : "验证码发送失败";
+                        ToastUitl.showShort(msg);
+                        if (booleanBaseHttpResult)
+                            mView.showSendCodeView();
                     }
 
                     @Override
                     protected void _onError(String message) {
                         mView.stopLoading();
-                        Toast.makeText(mContext, "验证码发送失败", Toast.LENGTH_SHORT).show();
+                        ToastUitl.showShort("手机号码已注册");
                     }
                 }));
     }
@@ -53,10 +65,14 @@ public class RegisterPresenter extends BaseContract.ARegisterPresenter {
         mRxManager.add(HttpManager.getInstance().toSubscribe(
                 HttpManager.getInstance().getHttpService(ApiAccountService.class)
                         .register(parameters)
-                , new RxSubscriber(mContext, true) {
+                        .filter(booleanBaseHttpResult -> booleanBaseHttpResult.result)
+                , new RxSubscriber<Boolean>(mContext, true) {
                     @Override
-                    protected void _onNext(Object o) {
-
+                    protected void _onNext(Boolean o) {
+                        if (o)
+                            mView.showRegisterView(username, password);
+                        else
+                            ToastUitl.showShort("手机号码已注册");
                     }
 
                     @Override
