@@ -21,6 +21,7 @@ import com.mylhyl.acp.AcpOptions;
 import com.zomake.mobile.R;
 import com.zomake.mobile.app.AppConstant;
 import com.zomake.mobile.bean.TabEntity;
+import com.zomake.mobile.ui.Presenter.EmptyPresenter;
 import com.zomake.mobile.ui.fragment.CustomFragment;
 import com.zomake.mobile.ui.fragment.MyFragment;
 import com.zomake.mobile.ui.fragment.ShopFragment;
@@ -30,7 +31,7 @@ import java.util.ArrayList;
 import butterknife.BindView;
 import rx.functions.Action1;
 
-public class MainActivity extends BaseActivity {
+public class MainActivity extends BaseActivity<EmptyPresenter> {
     @BindView(R.id.tab_layout)
     CommonTabLayout tabLayout;
     private String[] mTitles = {"商店", "定制", "我的"};

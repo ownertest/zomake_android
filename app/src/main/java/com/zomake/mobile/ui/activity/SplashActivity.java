@@ -8,6 +8,7 @@ import android.widget.ImageView;
 
 import com.jaydenxiao.common.base.BaseActivity;
 import com.zomake.mobile.R;
+import com.zomake.mobile.ui.Presenter.EmptyPresenter;
 
 import butterknife.BindView;
 
@@ -16,7 +17,7 @@ import butterknife.BindView;
  * Created by xsf
  * on 2016.09.15:16
  */
-public class SplashActivity extends BaseActivity {
+public class SplashActivity extends BaseActivity<EmptyPresenter> {
     @BindView(R.id.iv_logo)
     ImageView ivLogo;
 

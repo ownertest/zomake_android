@@ -10,13 +10,14 @@ import com.jaydenxiao.common.irecyclerview.IRecyclerView;
 import com.jaydenxiao.common.irecyclerview.universaladapter.ViewHolderHelper;
 import com.jaydenxiao.common.irecyclerview.universaladapter.recyclerview.CommonRecycleViewAdapter;
 import com.zomake.mobile.R;
+import com.zomake.mobile.ui.Presenter.EmptyPresenter;
 import com.zomake.mobile.widget.SpacesItemDecoration;
 
 import java.util.Arrays;
 
 import butterknife.BindView;
 
-public class AddressManageActivity extends BaseActivity {
+public class AddressManageActivity extends BaseActivity<EmptyPresenter> {
 
     @BindView(R.id.address_re)
     IRecyclerView recyclerView;

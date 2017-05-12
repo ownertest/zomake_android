@@ -43,7 +43,7 @@ public class DeviceUtil {
      */
     public static String[] getCountryZipCode(Context context) {
         String CountryID = "";
-        String CountryZipCode[] = new String[0];
+        String CountryZipCode[] = new String[]{"86","CN"};
         TelephonyManager manager = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
         CountryID = manager.getSimCountryIso().toUpperCase();
         String[] rl = context.getResources().getStringArray(R.array.CountryCodes);

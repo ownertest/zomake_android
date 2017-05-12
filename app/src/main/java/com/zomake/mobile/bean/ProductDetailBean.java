@@ -938,7 +938,7 @@ public class ProductDetailBean implements Serializable {
                     private String style;
                     private String type;
                     private long update_date;
-                    private int usd_price;
+                    private double usd_price;
 
                     public AttachmentEntityX getAttachment() {
                         return attachment;
@@ -1068,7 +1068,7 @@ public class ProductDetailBean implements Serializable {
                         this.update_date = update_date;
                     }
 
-                    public int getUsd_price() {
+                    public double getUsd_price() {
                         return usd_price;
                     }
 
@@ -1722,7 +1722,7 @@ public class ProductDetailBean implements Serializable {
                 private String style;
                 private String type;
                 private long update_date;
-                private int usd_price;
+                private double usd_price;
 
                 public AttachmentEntityXXXXX getAttachment() {
                     return attachment;
@@ -1852,7 +1852,7 @@ public class ProductDetailBean implements Serializable {
                     this.update_date = update_date;
                 }
 
-                public int getUsd_price() {
+                public double getUsd_price() {
                     return usd_price;
                 }
 

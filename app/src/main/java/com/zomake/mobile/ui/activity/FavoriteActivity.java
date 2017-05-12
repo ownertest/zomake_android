@@ -8,6 +8,7 @@ import android.support.v4.view.ViewPager;
 import com.jaydenxiao.common.base.BaseActivity;
 import com.jaydenxiao.common.base.BaseFragmentAdapter;
 import com.zomake.mobile.R;
+import com.zomake.mobile.ui.Presenter.EmptyPresenter;
 import com.zomake.mobile.ui.fragment.GoodsFragment;
 import com.zomake.mobile.ui.fragment.StoreFragment;
 import com.zomake.mobile.utils.MyUtils;
@@ -17,7 +18,7 @@ import java.util.List;
 
 import butterknife.BindView;
 
-public class FavoriteActivity extends BaseActivity {
+public class FavoriteActivity extends BaseActivity<EmptyPresenter> {
 
     @BindView(R.id.view_pager)
     ViewPager viewPager;

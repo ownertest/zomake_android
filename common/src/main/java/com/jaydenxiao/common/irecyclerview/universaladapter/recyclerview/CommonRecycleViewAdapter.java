@@ -76,27 +76,21 @@ public abstract class CommonRecycleViewAdapter<T> extends RecyclerView.Adapter<V
 
     protected void setListener(final ViewGroup parent, final ViewHolderHelper viewHolder, int viewType) {
         if (!isEnabled(viewType)) return;
-        viewHolder.getConvertView().setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (mOnItemClickListener != null) {
-                    int position = getPosition(viewHolder);
-                    //TODO why position plus 2
-                    mOnItemClickListener.onItemClick(parent, v, mDatas.get(position - 2), position);
-                }
+        viewHolder.getConvertView().setOnClickListener(v -> {
+            if (mOnItemClickListener != null) {
+                int position = getPosition(viewHolder);
+                //TODO why position plus 2
+                mOnItemClickListener.onItemClick(parent, v, mDatas.get(position - 2), position);
             }
         });
 
 
-        viewHolder.getConvertView().setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View v) {
-                if (mOnItemClickListener != null) {
-                    int position = getPosition(viewHolder);
-                    return mOnItemClickListener.onItemLongClick(parent, v, mDatas.get(position), position);
-                }
-                return false;
+        viewHolder.getConvertView().setOnLongClickListener(v -> {
+            if (mOnItemClickListener != null) {
+                int position = getPosition(viewHolder);
+                return mOnItemClickListener.onItemLongClick(parent, v, mDatas.get(position), position);
             }
+            return false;
         });
     }
 

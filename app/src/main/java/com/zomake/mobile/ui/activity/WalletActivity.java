@@ -4,8 +4,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import com.jaydenxiao.common.base.BaseActivity;
 import com.zomake.mobile.R;
+import com.zomake.mobile.ui.Presenter.EmptyPresenter;
 
-public class WalletActivity extends BaseActivity {
+public class WalletActivity extends BaseActivity<EmptyPresenter> {
 
 
     @Override

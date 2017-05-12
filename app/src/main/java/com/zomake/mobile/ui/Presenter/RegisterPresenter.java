@@ -1,7 +1,5 @@
 package com.zomake.mobile.ui.Presenter;
 
-import android.widget.Toast;
-
 import com.jaydenxiao.common.base.BaseHttpResult;
 import com.jaydenxiao.common.baserx.RxSubscriber;
 import com.jaydenxiao.common.commonutils.ToastUitl;
@@ -11,7 +9,6 @@ import com.zomake.mobile.contract.BaseContract;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Random;
 
 import rx.Observable;
 import rx.functions.Func1;

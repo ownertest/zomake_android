@@ -17,6 +17,7 @@ import com.zomake.mobile.bean.AdvertImageBean;
 import com.zomake.mobile.bean.CatalogProductsBean;
 import com.zomake.mobile.bean.MainCatalogBean;
 import com.zomake.mobile.contract.BaseContract;
+import com.zomake.mobile.ui.Presenter.EmptyPresenter;
 import com.zomake.mobile.ui.Presenter.MainCatalogPresenter;
 import com.zomake.mobile.widget.SpacesItemDecoration;
 
@@ -25,7 +26,7 @@ import java.util.Arrays;
 import butterknife.BindView;
 
 
-public class GoodsFragment extends BaseFragment  {
+public class GoodsFragment extends BaseFragment<EmptyPresenter>  {
 
     @BindView(R.id.tv_recyclerView)
     IRecyclerView recyclerView;

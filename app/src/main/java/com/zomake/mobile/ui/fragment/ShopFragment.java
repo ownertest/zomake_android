@@ -55,7 +55,7 @@ public class ShopFragment extends BaseFragment<MainShopPresenter> implements Bas
             List<Fragment> mNewsFragmentList = new ArrayList<>();
             for (int i = 0; i < mainCatalogBeen.data.size(); i++) {
                 channelNames.add(mainCatalogBeen.data.get(i).name);
-                mNewsFragmentList.add(createListFragments(mainCatalogBeen.data.get(i).attachment));
+                mNewsFragmentList.add(createListFragments(mainCatalogBeen.data.get(i).attachment, mainCatalogBeen.data.get(i).id));
             }
             if (fragmentAdapter == null) {
                 fragmentAdapter = new BaseFragmentAdapter(getChildFragmentManager(), mNewsFragmentList, channelNames);
@@ -69,10 +69,11 @@ public class ShopFragment extends BaseFragment<MainShopPresenter> implements Bas
         }
     }
 
-    private CatalogFragment createListFragments(MainCatalogBean.DataBean.AttachmentBeanXX newsChannel) {
+    private CatalogFragment createListFragments(MainCatalogBean.DataBean.AttachmentBeanXX newsChannel, String catalogId) {
         CatalogFragment fragment = new CatalogFragment();
         Bundle bundle = new Bundle();
         bundle.putSerializable(AppConstant.CATALOG_MENU, newsChannel);
+        bundle.putString(AppConstant.CATALOG_ID, catalogId);
         fragment.setArguments(bundle);
         return fragment;
     }

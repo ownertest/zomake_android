@@ -23,7 +23,7 @@ public class AdvertImageBean {
          */
 
         public String image;
-        public String url;
+        public String eid;
 
 
     }

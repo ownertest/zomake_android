@@ -22,6 +22,7 @@ import com.jaydenxiao.common.irecyclerview.universaladapter.recyclerview.CommonR
 import com.jaydenxiao.common.irecyclerview.universaladapter.recyclerview.OnItemClickListener;
 import com.zomake.mobile.R;
 import com.zomake.mobile.event.UserChangeEvent;
+import com.zomake.mobile.ui.Presenter.EmptyPresenter;
 import com.zomake.mobile.ui.activity.AddressManageActivity;
 import com.zomake.mobile.ui.activity.CarActivity;
 import com.zomake.mobile.ui.activity.CatalogProductListActivity;
@@ -45,7 +46,7 @@ import butterknife.OnClick;
 import butterknife.Unbinder;
 
 
-public class MyFragment extends BaseFragment implements View.OnClickListener {
+public class MyFragment extends BaseFragment<EmptyPresenter> implements View.OnClickListener {
 
     @BindView(R.id.user_center_recycler)
     IRecyclerView recyclerView;

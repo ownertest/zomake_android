@@ -13,6 +13,7 @@ import com.zomake.mobile.bean.CatalogProductListBean.DataEntity.ProductArrEntity
 import com.zomake.mobile.bean.ProductDetailBean;
 import com.zomake.mobile.bean.GoodAttrBean;
 import com.zomake.mobile.bean.ShopDetailBean;
+import com.zomake.mobile.ui.fragment.CatalogFragment;
 
 import java.util.List;
 
@@ -21,6 +22,13 @@ import java.util.List;
  * 邮箱：zhenweiduan2@creditease.cn
  */
 public interface BaseContract {
+    abstract class AEmptyPresenter extends BasePresenter<EmptyView> {
+
+    }
+
+    interface EmptyView extends BaseView {
+    }
+
     //主页接口
     abstract class MainPresenter extends BasePresenter<MainView> {
         public abstract void getMainChannels();
@@ -34,12 +42,18 @@ public interface BaseContract {
         public abstract void getCatalogList(String parentId);
 
         public abstract void getAdvertList(String id);
+
+        public abstract void addCatalogToGroupList(MainCatalogBean.DataBean.AttachmentBeanXX beanXX);
     }
 
     interface CatalogView extends BaseView {
+
+        void showViewList(List<CatalogFragment.CatalogGroupItem> list);
+
+        void showViewItem(CatalogFragment.CatalogGroupItem item);
+
         void showCatalogList(CatalogProductsBean productsBean);
 
-        void showAdvertList(AdvertImageBean imageBean);
     }
 
     abstract class AProductDetailPresenter extends BasePresenter<IProductDetailView> {

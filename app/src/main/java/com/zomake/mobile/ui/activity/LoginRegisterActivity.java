@@ -11,6 +11,7 @@ import com.jaydenxiao.common.base.BaseActivity;
 import com.jaydenxiao.common.base.BaseFragmentAdapter;
 import com.jaydenxiao.common.commonwidget.FontTextView;
 import com.zomake.mobile.R;
+import com.zomake.mobile.ui.Presenter.EmptyPresenter;
 import com.zomake.mobile.ui.fragment.LoginFragment;
 import com.zomake.mobile.ui.fragment.RegisterFragment;
 import com.zomake.mobile.ui.fragment.ShopInfoFragment;
@@ -27,7 +28,7 @@ import butterknife.ButterKnife;
  * desc:
  */
 
-public class LoginRegisterActivity extends BaseActivity {
+public class LoginRegisterActivity extends BaseActivity<EmptyPresenter> {
 
     @BindView(R.id.tv_back)
     FontTextView mTvBack;

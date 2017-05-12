@@ -5,8 +5,9 @@ import android.os.Bundle;
 
 import com.jaydenxiao.common.base.BaseActivity;
 import com.zomake.mobile.R;
+import com.zomake.mobile.ui.Presenter.EmptyPresenter;
 
-public class InboxActivity extends BaseActivity {
+public class InboxActivity extends BaseActivity<EmptyPresenter> {
 
 
     @Override

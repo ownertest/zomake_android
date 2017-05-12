@@ -40,7 +40,7 @@ public class CatalogListPresenter extends BaseContract.ACatalogListPresenter {
         parameter.put("page", "1");
         Observable ob = HttpManager.getInstance().getHttpService(ApiService.class)
                 .getCatalogProductList(parameter);
-        mRxManager.add(HttpManager.getInstance().toSubscribe(ob, new RxSubscriber<CatalogProductListBean>(mContext, false) {
+        addRx(HttpManager.getInstance().toSubscribe(ob, new RxSubscriber<CatalogProductListBean>(mContext, false) {
 
             @Override
             protected void _onNext(CatalogProductListBean catalogProductListBean) {

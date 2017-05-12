@@ -47,7 +47,7 @@ public class LoginPresenter extends BaseContract.ALoginPresenter {
                 });
 
 
-        mRxManager.add(
+        addRx(
                 HttpManager.getInstance().toSubscribe(
                         loginOb.filter(booleanBaseHttpResult -> booleanBaseHttpResult.result)
                                 .flatMap((Func1<BaseHttpResult<Boolean>, Observable<BaseHttpResult<UserInfoBean>>>)
@@ -56,7 +56,7 @@ public class LoginPresenter extends BaseContract.ALoginPresenter {
                             @Override
                             protected void _onNext(UserInfoBean o) {
                                 if (o != null) {
-                                    o.setPhone("18511621123");
+                                    o.setPhone(userName);
                                     UserInfoManager.getInstance().setCurUserInfo(o);
                                     ToastUitl.showShort("登录成功");
                                     UserChangeEvent userChangeEvent = new UserChangeEvent(UserChangeEvent.UserChangeType.LOGIN);

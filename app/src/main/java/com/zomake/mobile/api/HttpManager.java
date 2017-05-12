@@ -7,6 +7,7 @@ import com.franmontiel.persistentcookiejar.cache.SetCookieCache;
 import com.franmontiel.persistentcookiejar.persistence.SharedPrefsCookiePersistor;
 import com.jaydenxiao.common.baserx.RetrofitCache;
 import com.jaydenxiao.common.baserx.RxSubscriber;
+import com.jaydenxiao.common.commonutils.LogUtils;
 import com.jaydenxiao.common.transformer.CommonTransformer;
 import com.zomake.mobile.app.BaseApplication;
 import com.zomake.mobile.bean.UserInfoBean;
@@ -21,6 +22,8 @@ import okhttp3.HttpUrl;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
+import okhttp3.Response;
+import okhttp3.ResponseBody;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
@@ -115,7 +118,7 @@ public class HttpManager {
                     client = new OkHttpClient
                             .Builder()
                             .addInterceptor(addHeaderInterceptor()) // token过滤
-                            .addInterceptor(httpLoggingInterceptor) //日志,所有的请求响应度看到
+                            .addInterceptor(LoggingInterceptor) //日志,所有的请求响应度看到
                             .cookieJar(cookieJar)
                             .cache(cache)  //添加缓存
                             .connectTimeout(60L, TimeUnit.SECONDS)
@@ -135,6 +138,21 @@ public class HttpManager {
         }
         return retrofit;
     }
+
+    private static final Interceptor LoggingInterceptor = chain -> {
+        Request request = chain.request();
+        long t1 = System.nanoTime();
+        LogUtils.logi("Sending request %s on %s%n%s", request.url(), chain.connection(), request.headers());
+        Response response = chain.proceed(request);
+        long t2 = System.nanoTime();
+        LogUtils.logi("Received response for %s in %.1fms%n%s", response.request().url(), (t2 - t1) / 1e6d, response.headers());
+        final String responseString = new String(response.body().bytes());
+        LogUtils.logi("Response: " + responseString);
+
+        return response.newBuilder()
+                .body(ResponseBody.create(response.body().contentType(), responseString))
+                .build();
+    };
 
     public Subscription toSubscribe(Observable ob, final RxSubscriber subscriber) {
         //数据预处理

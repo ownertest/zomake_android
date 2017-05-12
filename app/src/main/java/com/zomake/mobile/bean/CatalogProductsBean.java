@@ -274,7 +274,7 @@ public class CatalogProductsBean {
                             public String style;
                             public String type;
                             public long update_date;
-                            public int usd_price;
+                            public double usd_price;
 
 
                             public static class AttachmentBeanX {

@@ -123,3 +123,7 @@ crawler/crawler.iml
 mvp.jks
 .idea/*
 crawler/crawler.aar
+/freeline_project_description.json
+/freeline.py
+/freeline/
+/gradle.properties

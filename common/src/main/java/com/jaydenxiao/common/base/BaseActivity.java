@@ -10,9 +10,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.Window;
 
-import com.jaydenxiao.common.BuildConfig;
 import com.jaydenxiao.common.R;
 import com.jaydenxiao.common.baseapp.AppManager;
 import com.jaydenxiao.common.baserx.RxManager;
@@ -22,7 +20,6 @@ import com.jaydenxiao.common.commonwidget.LoadingDialog;
 import com.jaydenxiao.common.commonwidget.NormalTitleBar;
 import com.jaydenxiao.common.commonwidget.StatusBarCompat;
 import com.jaydenxiao.common.daynightmodeutils.ChangeModeController;
-import com.umeng.analytics.MobclickAgent;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
@@ -275,20 +272,20 @@ public abstract class BaseActivity<T extends BasePresenter> extends AppCompatAct
     protected void onResume() {
         super.onResume();
         //debug版本不统计crash
-        if (!BuildConfig.LOG_DEBUG) {
-            //友盟统计
-            MobclickAgent.onResume(this);
-        }
+//        if (!BuildConfig.LOG_DEBUG) {
+//            //友盟统计
+//            MobclickAgent.onResume(this);
+//        }
     }
 
     @Override
     protected void onPause() {
         super.onPause();
         //debug版本不统计crash
-        if (!BuildConfig.LOG_DEBUG) {
-            //友盟统计
-            MobclickAgent.onPause(this);
-        }
+//        if (!BuildConfig.LOG_DEBUG) {
+//            //友盟统计
+//            MobclickAgent.onPause(this);
+//        }
     }
 
 

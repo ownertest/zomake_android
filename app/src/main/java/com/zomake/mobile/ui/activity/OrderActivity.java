@@ -11,6 +11,7 @@ import com.jaydenxiao.common.base.BaseFragmentAdapter;
 import com.zomake.mobile.R;
 import com.zomake.mobile.app.AppConstant;
 import com.zomake.mobile.bean.MainCatalogBean;
+import com.zomake.mobile.ui.Presenter.EmptyPresenter;
 import com.zomake.mobile.ui.fragment.CatalogFragment;
 import com.zomake.mobile.ui.fragment.OrderListFragment;
 import com.zomake.mobile.utils.MyUtils;
@@ -20,7 +21,7 @@ import java.util.List;
 
 import butterknife.BindView;
 
-public class OrderActivity extends BaseActivity {
+public class OrderActivity extends BaseActivity<EmptyPresenter> {
 
     @BindView(R.id.view_pager)
     ViewPager viewPager;

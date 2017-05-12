@@ -4,6 +4,8 @@ import android.content.Context;
 
 import com.jaydenxiao.common.baserx.RxManager;
 
+import rx.Subscription;
+
 /**
  * des:基类presenter
  * Created by xsf
@@ -22,5 +24,9 @@ public abstract class BasePresenter<T>{
     };
     public void onDestroy() {
         mRxManager.clear();
+    }
+
+    public void addRx(Subscription subscription){
+        mRxManager.add(subscription);
     }
 }
