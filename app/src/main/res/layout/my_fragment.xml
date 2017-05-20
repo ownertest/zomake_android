@@ -171,8 +171,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        app:loadMoreEnabled="true"
-        app:refreshEnabled="true"/>
+        app:loadMoreEnabled="false"
+        app:refreshEnabled="false"/>
 
     <RelativeLayout
         android:layout_width="match_parent"

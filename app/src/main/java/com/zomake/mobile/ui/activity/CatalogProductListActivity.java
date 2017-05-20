@@ -1,5 +1,7 @@
 package com.zomake.mobile.ui.activity;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -8,6 +10,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.CheckedTextView;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -21,11 +24,13 @@ import com.jaydenxiao.common.commonwidget.NormalTitleBar;
 import com.jaydenxiao.common.irecyclerview.IRecyclerView;
 import com.jaydenxiao.common.irecyclerview.universaladapter.ViewHolderHelper;
 import com.jaydenxiao.common.irecyclerview.universaladapter.recyclerview.CommonRecycleViewAdapter;
+import com.jaydenxiao.common.irecyclerview.universaladapter.recyclerview.OnItemClickListener;
 import com.zhy.view.flowlayout.FlowLayout;
 import com.zhy.view.flowlayout.TagAdapter;
 import com.zhy.view.flowlayout.TagFlowLayout;
 import com.zomake.mobile.R;
 import com.zomake.mobile.bean.CatalogFilterBean;
+import com.zomake.mobile.bean.CatalogProductListBean;
 import com.zomake.mobile.bean.CatalogProductListBean.DataEntity.ProductArrEntity;
 import com.zomake.mobile.contract.BaseContract;
 import com.zomake.mobile.ui.Presenter.CatalogListPresenter;
@@ -213,6 +218,9 @@ public class CatalogProductListActivity extends BaseActivity<CatalogListPresente
             }
         };
 
+        mLinearAdapter.setOnItemClickListener(onItemClickListener);
+        mGridAdapter.setOnItemClickListener(onItemClickListener);
+
         mRecyclerView.setAdapter(isProductViewAsList ? mLinearAdapter : mGridAdapter);
         mPresenter.getCatalogProductList(catalogId);
         mPresenter.getCatalogList(catalogId);
@@ -227,15 +235,30 @@ public class CatalogProductListActivity extends BaseActivity<CatalogListPresente
         getTitleBar().setSecTvLeft(parentName);
         getTitleBar().getTvSecLeft().setBackgroundResource(R.drawable.text_border_1);
         getTitleBar().setRightImagSrc(R.drawable.filter_property);
-        getTitleBar().setOnRightImagListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (!mDrawerRoot.isDrawerOpen(GravityCompat.END))
-                    mDrawerRoot.openDrawer(GravityCompat.END);
-                else
-                    mDrawerRoot.closeDrawer(GravityCompat.END);
-            }
+        getTitleBar().setOnRightImagListener(v -> {
+            if (!mDrawerRoot.isDrawerOpen(GravityCompat.END))
+                mDrawerRoot.openDrawer(GravityCompat.END);
+            else
+                mDrawerRoot.closeDrawer(GravityCompat.END);
         });
+    }
+
+    OnItemClickListener<ProductArrEntity> onItemClickListener = new OnItemClickListener<ProductArrEntity>() {
+        @Override
+        public void onItemClick(ViewGroup parent, View view, ProductArrEntity productArrEntity, int position) {
+            if (productArrEntity != null) {
+                goProductDetail(productArrEntity.getId());
+            }
+        }
+
+        @Override
+        public boolean onItemLongClick(ViewGroup parent, View view, ProductArrEntity productArrEntity, int position) {
+            return false;
+        }
+    };
+
+    private void goProductDetail(String eid) {
+        ProductDetailActivity.startActivity(this, eid);
     }
 
     @Override
@@ -328,5 +351,13 @@ public class CatalogProductListActivity extends BaseActivity<CatalogListPresente
         public int getSortImg() {
             return sortImg;
         }
+    }
+
+    public static void startActivity(Context context, String catalogId, String catalogName, String parentName) {
+        Intent intent = new Intent(context, CatalogProductListActivity.class);
+        intent.putExtra("catalogId", catalogId);
+        intent.putExtra("catalogName", catalogName);
+        intent.putExtra("parentName", parentName);
+        context.startActivity(intent);
     }
 }

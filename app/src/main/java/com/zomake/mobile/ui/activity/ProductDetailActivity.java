@@ -128,7 +128,7 @@ public class ProductDetailActivity extends BaseActivity<ProductDetailPresenter> 
         mRecyclerView.addFooterView(mFooterShopInfoView);
         View mFooterOtherInfoView = LayoutInflater.from(this).inflate(R.layout.product_footer_other_info, null);
         mRecyclerView.addFooterView(mFooterOtherInfoView);
-        mPresenter.getProductDetail("57d5573f3916c325f8e9c1cc");
+        mPresenter.getProductDetail(eid);
     }
 
     @Override

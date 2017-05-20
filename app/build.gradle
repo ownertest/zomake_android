@@ -30,6 +30,10 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
     buildToolsVersion '25.0.0'
+
+    freeline{
+        hack = true
+    }
 }
 
 dependencies {

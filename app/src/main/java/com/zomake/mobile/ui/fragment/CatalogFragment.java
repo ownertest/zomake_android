@@ -17,11 +17,13 @@ import com.jaydenxiao.common.base.BaseFragment;
 import com.jaydenxiao.common.commonutils.DisplayUtil;
 import com.jaydenxiao.common.commonutils.ImageLoaderUtils;
 import com.jaydenxiao.common.commonwidget.NoScrollGridView;
+import com.jaydenxiao.common.commonwidget.OnDoubleClickListener;
 import com.jaydenxiao.common.irecyclerview.IRecyclerView;
 import com.jaydenxiao.common.irecyclerview.universaladapter.ViewHolderHelper;
 import com.jaydenxiao.common.irecyclerview.universaladapter.abslistview.CommonAblistViewAdapter;
 import com.jaydenxiao.common.irecyclerview.universaladapter.recyclerview.CommonRecycleViewAdapter;
-import com.jaydenxiao.common.irecyclerview.universaladapter.recyclerview.MultiItemRecycleViewAdapter;
+import com.jaydenxiao.common.irecyclerview.universaladapter.recyclerview
+        .MultiItemRecycleViewAdapter;
 import com.jaydenxiao.common.irecyclerview.universaladapter.recyclerview.MultiItemTypeSupport;
 import com.zomake.mobile.R;
 import com.zomake.mobile.app.AppConstant;
@@ -31,6 +33,8 @@ import com.zomake.mobile.bean.MainCatalogBean;
 import com.zomake.mobile.bean.MainCatalogBean.DataBean.AttachmentBeanXX.ChildrenBean;
 import com.zomake.mobile.contract.BaseContract;
 import com.zomake.mobile.ui.Presenter.MainCatalogPresenter;
+import com.zomake.mobile.ui.activity.CatalogProductListActivity;
+import com.zomake.mobile.ui.activity.ProductDetailActivity;
 
 
 import java.util.List;
@@ -41,7 +45,8 @@ import rx.functions.Action1;
 import rx.functions.Func1;
 
 
-public class CatalogFragment extends BaseFragment<MainCatalogPresenter> implements BaseContract.CatalogView {
+public class CatalogFragment extends BaseFragment<MainCatalogPresenter> implements BaseContract
+        .CatalogView {
 
     public static final int TYPE_ITEM = 0x11;
     public static final int TYPE_CATALOG = 0x12;
@@ -67,27 +72,30 @@ public class CatalogFragment extends BaseFragment<MainCatalogPresenter> implemen
     @Override
     protected void initView() {
         if (getArguments() != null) {
-            childrenBeanList = (MainCatalogBean.DataBean.AttachmentBeanXX) getArguments().getSerializable(AppConstant.CATALOG_MENU);
+            childrenBeanList = (MainCatalogBean.DataBean.AttachmentBeanXX) getArguments()
+                    .getSerializable(AppConstant.CATALOG_MENU);
             mParentId = getArguments().getString(AppConstant.CATALOG_ID);
         }
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        adapter = new MultiItemRecycleViewAdapter<CatalogGroupItem>(getActivity(), new MultiItemTypeSupport<CatalogGroupItem>() {
-            @Override
-            public int getLayoutId(int itemType) {
-                return itemType == TYPE_ITEM ? R.layout.advert_item_layout : R.layout.catalog_grid_layout;
-            }
+        adapter = new MultiItemRecycleViewAdapter<CatalogGroupItem>(getActivity(), new
+                MultiItemTypeSupport<CatalogGroupItem>() {
+                    @Override
+                    public int getLayoutId(int itemType) {
+                        return itemType == TYPE_ITEM ? R.layout.advert_item_layout : R.layout.catalog_grid_layout;
+                    }
 
-            @Override
-            public int getItemViewType(int position, CatalogGroupItem item) {
-                return item.type;
-            }
-        }) {
+                    @Override
+                    public int getItemViewType(int position, CatalogGroupItem item) {
+                        return item.type;
+                    }
+                }) {
             @Override
             public void convert(ViewHolderHelper helper, CatalogGroupItem item) {
                 switch (item.type) {
                     case TYPE_CATALOG:
                         List<ChildrenBean> list = (List<ChildrenBean>) item.o;
-                        CatalogGridAdapter gridAdapter = new CatalogGridAdapter(getActivity(), R.layout.catalog_item_layout, list);
+                        CatalogGridAdapter gridAdapter = new CatalogGridAdapter(getActivity(), R.layout
+                                .catalog_item_layout, list);
                         NoScrollGridView r = helper.getView(R.id.grid_catalog);
                         r.setNumColumns(5);
                         r.setAdapter(gridAdapter);
@@ -100,7 +108,9 @@ public class CatalogFragment extends BaseFragment<MainCatalogPresenter> implemen
                                 DisplayUtil.getScreenWidth(getActivity()));
                         layoutParams.topMargin = DisplayUtil.dip2px(getActivity(), 10);
                         advertImg.setLayoutParams(layoutParams);
-                        ImageLoaderUtils.display(getActivity(), advertImg, "https://cdn.zomake.com/" + bean.image);
+                        advertImg.setOnClickListener(v -> ProductDetailActivity.startActivity(getActivity(), bean.eid));
+                        ImageLoaderUtils.display(getActivity(), advertImg, "https://cdn.zomake.com/" + bean
+                                .image);
                         break;
                     default:
                         break;
@@ -108,17 +118,20 @@ public class CatalogFragment extends BaseFragment<MainCatalogPresenter> implemen
             }
         };
 
-//                R.layout.catalog_item_layout) {
-//            @Override
-//            public void convert(ViewHolderHelper helper, MainCatalogBean.DataBean.AttachmentBeanXX.ChildrenBean productsDataBean) {
-//                helper.setText(R.id.name, productsDataBean.name);
-//                Glide.with(getActivity()).load("https://shop-cdn.zomake.com/" + productsDataBean.banner).into((ImageView) helper.getView(R.id.image));
-//            }
-//        };
-//        headerView = (LinearLayout) LayoutInflater.from(getActivity()).inflate(R.layout.advert_item_layout, recyclerView, false);
+        //                R.layout.catalog_item_layout) {
+        //            @Override
+        //            public void convert(ViewHolderHelper helper, MainCatalogBean.DataBean
+        // .AttachmentBeanXX.ChildrenBean productsDataBean) {
+        //                helper.setText(R.id.name, productsDataBean.name);
+        //                Glide.with(getActivity()).load("https://shop-cdn.zomake.com/" +
+        // productsDataBean.banner).into((ImageView) helper.getView(R.id.image));
+        //            }
+        //        };
+        //        headerView = (LinearLayout) LayoutInflater.from(getActivity()).inflate(R.layout
+        // .advert_item_layout, recyclerView, false);
         recyclerView.setAdapter(adapter);
-//        recyclerView.addFooterView(headerView);
-//        adapter.addAll(childrenBeanList.getChildren());
+        //        recyclerView.addFooterView(headerView);
+        //        adapter.addAll(childrenBeanList.getChildren());
         mPresenter.addCatalogToGroupList(childrenBeanList);
         mPresenter.getCatalogList(mParentId);
         mPresenter.getAdvertList(mParentId);
@@ -153,17 +166,19 @@ public class CatalogFragment extends BaseFragment<MainCatalogPresenter> implemen
 
     }
 
-//    private void addAdvertImg(AdvertImageBean imageBean) {
-//        for (int i = 0; i < imageBean.list.size(); i++) {
-//            ImageView advertImg = new ImageView(getActivity());
-//            LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
-//                    DisplayUtil.getScreenWidth(getActivity()));
-//            advertImg.setScaleType(ImageView.ScaleType.CENTER_CROP);
-//            layoutParams.topMargin = 20;
-//            ImageLoaderUtils.display(getActivity(), advertImg, "https://cdn.zomake.com/" + imageBean.list.get(i).image);
-//            headerView.addView(advertImg, layoutParams);
-//        }
-//    }
+    //    private void addAdvertImg(AdvertImageBean imageBean) {
+    //        for (int i = 0; i < imageBean.list.size(); i++) {
+    //            ImageView advertImg = new ImageView(getActivity());
+    //            LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewGroup
+    // .LayoutParams.MATCH_PARENT,
+    //                    DisplayUtil.getScreenWidth(getActivity()));
+    //            advertImg.setScaleType(ImageView.ScaleType.CENTER_CROP);
+    //            layoutParams.topMargin = 20;
+    //            ImageLoaderUtils.display(getActivity(), advertImg, "https://cdn.zomake.com/" +
+    // imageBean.list.get(i).image);
+    //            headerView.addView(advertImg, layoutParams);
+    //        }
+    //    }
 
     public static class CatalogGroupItem {
 
@@ -176,15 +191,20 @@ public class CatalogFragment extends BaseFragment<MainCatalogPresenter> implemen
         }
     }
 
-    class CatalogGridAdapter extends CommonAblistViewAdapter<ChildrenBean> {
-        public CatalogGridAdapter(Context context, int layoutId, List<ChildrenBean> datas) {
+    private class CatalogGridAdapter extends CommonAblistViewAdapter<ChildrenBean> {
+        CatalogGridAdapter(Context context, int layoutId, List<ChildrenBean> datas) {
             super(context, layoutId, datas);
         }
 
         @Override
         public void convert(ViewHolderHelper holder, ChildrenBean childrenBean) {
             holder.setText(R.id.name, childrenBean.name);
-            ImageLoaderUtils.display(getActivity(), holder.getView(R.id.image), "https://shop-cdn.zomake.com/" + childrenBean.banner);
+            holder.setOnClickListener(R.id.catalog_root, v -> {
+                CatalogProductListActivity.startActivity(getActivity(), childrenBean.id, childrenBean
+                        .name, childrenBean.parent.name);
+            });
+            ImageLoaderUtils.display(getActivity(), holder.getView(R.id.image), "https://shop-cdn" +
+                    ".zomake.com/" + childrenBean.banner);
         }
 
         @Override

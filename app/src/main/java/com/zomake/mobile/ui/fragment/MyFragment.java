@@ -26,6 +26,7 @@ import com.zomake.mobile.ui.Presenter.EmptyPresenter;
 import com.zomake.mobile.ui.activity.AddressManageActivity;
 import com.zomake.mobile.ui.activity.CarActivity;
 import com.zomake.mobile.ui.activity.CatalogProductListActivity;
+import com.zomake.mobile.ui.activity.FavoriteActivity;
 import com.zomake.mobile.ui.activity.InboxActivity;
 import com.zomake.mobile.ui.activity.LoginRegisterActivity;
 import com.zomake.mobile.ui.activity.OrderActivity;
@@ -137,18 +138,13 @@ public class MyFragment extends BaseFragment<EmptyPresenter> implements View.OnC
                     Intent intent = new Intent(getActivity(), AddressManageActivity.class);
                     startActivity(intent);
                 } else if (position == 4) {
-//                    Intent intent = new Intent(getActivity(), CarActivity.class);
-                    Intent intent = new Intent(getActivity(), ProductDetailActivity.class);
+                    Intent intent = new Intent(getActivity(), CarActivity.class);
                     startActivity(intent);
                 } else if (position == 5) {
                     Intent intent = new Intent(getActivity(), InboxActivity.class);
                     startActivity(intent);
                 } else if (position == 6) {
-//                    Intent intent = new Intent(getActivity(), FavoriteActivity.class);
-                    Intent intent = new Intent(getActivity(), CatalogProductListActivity.class);
-                    intent.putExtra("catalogId", "5836c796d939c40001dc842c");
-                    intent.putExtra("catalogName", "手机壳");
-                    intent.putExtra("parentName", "数码");
+                    Intent intent = new Intent(getActivity(), FavoriteActivity.class);
                     startActivity(intent);
                 }
             }
